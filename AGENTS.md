@@ -15,6 +15,7 @@ The landing page of c-f-x, a family of self-hosted tools on Cloudflare. One stat
 
 - The trunk is `master`. Work on a branch and open a pull request. The lead merges.
 - The page loads nothing from another site: fonts, scripts and styles are served from `public/`. `npm run check` holds it.
+- Analytics: one cookieless page view per load, sent from the live site only to `e.c-f-x.com`, the page's own intake host on the family's analytics deployment (project `c-f-x.com`). Nothing is sent under Do Not Track or Global Privacy Control, and the footer says so.
 - The look comes from the c-f-x brand: neutrals plus the Primary teal `#086A72`, which marks the one primary action. Every colour is a token in the page's `:root`.
 - Every tool name links to one place, the same everywhere on the page: the tool's own site once it has one, its public repository until then. A tool whose code is not public yet is plain text.
 - Motion is short. Each piece also works without scripts, and `prefers-reduced-motion` turns it off.
