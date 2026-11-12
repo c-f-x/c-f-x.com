@@ -1,0 +1,14 @@
+{
+  // c-f-x.com: a static page served by Cloudflare Workers Static Assets. No build step.
+  // Deploy: docs/deploy.md. The account comes from the deployer's wrangler login, so no id lives here.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "c-f-x-com",
+  "compatibility_date": "2026-11-11",
+  "assets": {
+    "directory": "./public"
+  },
+  "routes": [
+    { "pattern": "c-f-x.com", "custom_domain": true },
+    { "pattern": "www.c-f-x.com", "custom_domain": true }
+  ]
+}
