@@ -34,6 +34,7 @@
 
     --cfx-font-heading:"Stack Sans Notch", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --cfx-font-body:"Krub", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --cfx-mark-soon:#5D5D5D;
     --cfx-font-code:ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", monospace;
 
     --cfx-space-0-5:2px; --cfx-space-1:4px; --cfx-space-1-5:6px; --cfx-space-2:8px; --cfx-space-2-5:10px;
@@ -144,6 +145,8 @@
   .tile.wide{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:var(--cfx-space-3)}
   .tile .t-role{font-size:var(--t-14);color:var(--cfx-text-soft)}
   .mk{width:var(--cfx-space-8);height:var(--cfx-space-8);flex:none;display:block}
+  /* a tool not released yet: its mark on the brand teal with the colour taken out, oklch(0.48 0 0) */
+  .soon{--mk-fill:var(--cfx-mark-soon)}
   .st{display:inline-flex;align-items:center;gap:var(--cfx-space-1-5)}
   .sdot{width:var(--cfx-space-2);height:var(--cfx-space-2);border-radius:50%;flex:none;background:var(--cfx-success)}
   .sdot.built{background:var(--cfx-text-soft)}
@@ -331,7 +334,7 @@
 </header>
 
 <main>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="m-cfx-kit" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/><rect x="14" y="2" width="8" height="8" rx="1"/></g></symbol><symbol id="m-cfx-analytics" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g></symbol><symbol id="m-cfx-status" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g></symbol><symbol id="m-cfx-errors" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-9"/><path d="M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"/><path d="M14.12 3.88 16 2"/><path d="M21 21a4 4 0 0 0-3.81-4"/><path d="M21 5a4 4 0 0 1-3.55 3.97"/><path d="M22 13h-4"/><path d="M3 21a4 4 0 0 1 3.81-4"/><path d="M3 5a4 4 0 0 0 3.55 3.97"/><path d="M6 13H2"/><path d="m8 2 1.88 1.88"/><path d="M9 7.13V6a3 3 0 1 1 6 0v1.13"/></g></symbol><symbol id="m-cfx-launch" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></g></symbol><symbol id="m-cfx-mail" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></g></symbol><symbol id="m-cfx-backup" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></g></symbol><symbol id="m-cfx-revenue" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></g></symbol><symbol id="m-cfx-ledger" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></g></symbol><symbol id="m-cfx-admin" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#086A72"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m14.305 16.53.923-.382"/><path d="m15.228 13.852-.923-.383"/><path d="m16.852 12.228-.383-.923"/><path d="m16.852 17.772-.383.924"/><path d="m19.148 12.228.383-.923"/><path d="m19.53 18.696-.382-.924"/><path d="m20.772 13.852.924-.383"/><path d="m20.772 16.148.924.383"/><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/></g></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="m-cfx-kit" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/><rect x="14" y="2" width="8" height="8" rx="1"/></g></symbol><symbol id="m-cfx-analytics" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g></symbol><symbol id="m-cfx-status" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g></symbol><symbol id="m-cfx-errors" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-9"/><path d="M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"/><path d="M14.12 3.88 16 2"/><path d="M21 21a4 4 0 0 0-3.81-4"/><path d="M21 5a4 4 0 0 1-3.55 3.97"/><path d="M22 13h-4"/><path d="M3 21a4 4 0 0 1 3.81-4"/><path d="M3 5a4 4 0 0 0 3.55 3.97"/><path d="M6 13H2"/><path d="m8 2 1.88 1.88"/><path d="M9 7.13V6a3 3 0 1 1 6 0v1.13"/></g></symbol><symbol id="m-cfx-launch" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></g></symbol><symbol id="m-cfx-mail" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></g></symbol><symbol id="m-cfx-backup" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></g></symbol><symbol id="m-cfx-revenue" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></g></symbol><symbol id="m-cfx-ledger" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></g></symbol><symbol id="m-cfx-admin" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m14.305 16.53.923-.382"/><path d="m15.228 13.852-.923-.383"/><path d="m16.852 12.228-.383-.923"/><path d="m16.852 17.772-.383.924"/><path d="m19.148 12.228.383-.923"/><path d="m19.53 18.696-.382-.924"/><path d="m20.772 13.852.924-.383"/><path d="m20.772 16.148.924.383"/><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/></g></symbol></svg>
   <section class="hero" aria-labelledby="hero-title">
     <canvas class="hero-field" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -351,21 +354,21 @@
           <div class="map-row"><span class="node"><span aria-hidden="true">A</span><span class="label">watch</span></span>
             <ul class="tiles">
               <li><a class="tile" href="https://github.com/c-f-x/cfx-analytics"><svg class="mk" style="--i:0" aria-hidden="true"><use href="#m-cfx-analytics"/></svg><span class="t-name">cfx-analytics</span></a></li>
-              <li class="tile"><svg class="mk" style="--i:1" aria-hidden="true"><use href="#m-cfx-errors"/></svg><span class="t-name">cfx-errors</span></li>
-              <li class="tile"><svg class="mk" style="--i:2" aria-hidden="true"><use href="#m-cfx-status"/></svg><span class="t-name">cfx-status</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:1" aria-hidden="true"><use href="#m-cfx-errors"/></svg><span class="t-name">cfx-errors</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:2" aria-hidden="true"><use href="#m-cfx-status"/></svg><span class="t-name">cfx-status</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">B</span><span class="label">reach</span></span>
             <ul class="tiles">
               <li><a class="tile" href="https://github.com/c-f-x/cfx-mail"><svg class="mk" style="--i:3" aria-hidden="true"><use href="#m-cfx-mail"/></svg><span class="t-name">cfx-mail</span></a></li>
-              <li class="tile"><svg class="mk" style="--i:4" aria-hidden="true"><use href="#m-cfx-launch"/></svg><span class="t-name">cfx-launch</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:4" aria-hidden="true"><use href="#m-cfx-launch"/></svg><span class="t-name">cfx-launch</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">C</span><span class="label">keep</span></span>
             <ul class="tiles">
-              <li class="tile"><svg class="mk" style="--i:5" aria-hidden="true"><use href="#m-cfx-backup"/></svg><span class="t-name">cfx-backup</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:5" aria-hidden="true"><use href="#m-cfx-backup"/></svg><span class="t-name">cfx-backup</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">D</span><span class="label">run</span></span>
             <ul class="tiles">
-              <li class="tile"><svg class="mk" style="--i:6" aria-hidden="true"><use href="#m-cfx-admin"/></svg><span class="t-name">cfx-admin</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:6" aria-hidden="true"><use href="#m-cfx-admin"/></svg><span class="t-name">cfx-admin</span></li>
             </ul></div>
           <div class="map-row"><span class="node kit"><span class="label">kit</span></span>
             <ul class="tiles"><li class="span"><a class="tile wide" href="https://github.com/c-f-x/cfx-kit"><svg class="mk" style="--i:7" aria-hidden="true"><use href="#m-cfx-kit"/></svg><span class="t-name">cfx-kit</span><span class="t-role">every tool stands on it</span></a></li></ul></div>
@@ -404,13 +407,13 @@
             <span class="st label"><span class="sdot"></span>live</span>
           </li>
           <li class="bed" id="cfx-errors">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-errors"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-errors"/></svg></span>
             <span><span class="bed-name">cfx-errors</span><span class="role label">error tracking</span></span>
             <span class="desc">Collects the errors your apps throw, and groups the ones that share a cause.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
           </li>
           <li class="bed" id="cfx-status">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-status"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-status"/></svg></span>
             <span><span class="bed-name">cfx-status</span><span class="role label">uptime and status pages</span></span>
             <span class="desc">Checks that your sites answer and that your scheduled jobs still check in. A public status page shows the result.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
@@ -430,7 +433,7 @@
             <span class="st label"><span class="sdot"></span>live</span>
           </li>
           <li class="bed" id="cfx-launch">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-launch"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-launch"/></svg></span>
             <span><span class="bed-name">cfx-launch</span><span class="role label">launch pages and signups</span></span>
             <span class="desc">Launch pages, waitlists and tracked links for a new product. It counts who visits and who signs up, from each link you share.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
@@ -444,7 +447,7 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-backup">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-backup"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-backup"/></svg></span>
             <span><span class="bed-name">cfx-backup</span><span class="role label">backups</span></span>
             <span class="desc">Copies your data off Cloudflare on a schedule. Each copy is restored in a test, so you know it works.</span>
             <span class="st label"><span class="sdot later"></span>later</span>
@@ -458,7 +461,7 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-admin">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-admin"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-admin"/></svg></span>
             <span><span class="bed-name">cfx-admin</span><span class="role label">admin panels</span></span>
             <span class="desc">A panel to read and fix the data in any of your products, for you and for your agents.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
