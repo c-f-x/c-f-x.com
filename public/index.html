@@ -34,7 +34,7 @@
 
     --cfx-font-heading:"Stack Sans Notch", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --cfx-font-body:"Krub", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --cfx-mark-soon:#5D5D5D;
+    --cfx-mark-soon:#7A7A7A;
     --cfx-font-code:ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", monospace;
 
     --cfx-space-0-5:2px; --cfx-space-1:4px; --cfx-space-1-5:6px; --cfx-space-2:8px; --cfx-space-2-5:10px;
@@ -145,8 +145,10 @@
   .tile.wide{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:var(--cfx-space-3)}
   .tile .t-role{font-size:var(--t-14);color:var(--cfx-text-soft)}
   .mk{width:var(--cfx-space-8);height:var(--cfx-space-8);flex:none;display:block}
-  /* a tool not released yet: its mark on the brand teal with the colour taken out, oklch(0.48 0 0) */
+  /* a tool not released yet: its mark on the brand teal with the colour taken out, about 20% lighter, oklch(0.581 0 0) */
   .soon{--mk-fill:var(--cfx-mark-soon)}
+  /* and its name 40% of the way toward the background: lighter on the light canvas, dimmer on the dark one */
+  .tile:has(.soon) .t-name,.bed:has(.plate.soon) .bed-name{color:color-mix(in oklch,var(--cfx-text) 60%,var(--cfx-bg))}
   .st{display:inline-flex;align-items:center;gap:var(--cfx-space-1-5)}
   .sdot{width:var(--cfx-space-2);height:var(--cfx-space-2);border-radius:50%;flex:none;background:var(--cfx-success)}
   .sdot.built{background:var(--cfx-text-soft)}
