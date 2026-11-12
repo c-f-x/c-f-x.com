@@ -230,6 +230,9 @@
   .gf-bottom{margin-top:var(--cfx-space-12);padding-top:var(--cfx-space-5);border-top:var(--cfx-stroke-hairline) solid var(--cfx-border);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--cfx-space-2) var(--cfx-space-6);font-size:var(--t-12);color:var(--cfx-text-soft)}
 
+  .gf-bottom a{color:inherit;text-decoration:none}
+  .gf-bottom a:hover{color:var(--cfx-text)}
+
   /* ── smaller screens ── */
   @media (max-width:1279px){
     .hero h1{font-size:var(--t-64)}
@@ -562,6 +565,7 @@
     </div>
     <div class="gf-bottom">
       <span>© 2026 c-f-x · self-hosted tools on Cloudflare</span>
+      <span>Visits counted without cookies, in the EU, by <a href="https://github.com/c-f-x/cfx-analytics">cfx-analytics</a></span>
       <span>Deploy once. Attach every product.</span>
     </div>
   </div>
@@ -656,6 +660,25 @@
   new MutationObserver(function(){colours();draw(1);}).observe(root,{attributes:true,attributeFilter:['data-theme']});
   window.addEventListener('resize',function(){size();draw(1);});
   if(!still) requestAnimationFrame(loop);
+})();
+</script>
+<script>
+/* one cookieless page view for c-f-x.com, counted in the EU.
+   no cookies, no storage, no library; nothing is sent under Do Not Track or Global Privacy Control. */
+(function(){
+  if (location.host !== 'c-f-x.com' && location.host !== 'www.c-f-x.com') return;
+  if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
+  var t = 'cfa_pk_9nBx2CZetLDUP3xHQWdfizPFW_czYrPtkpUwiiufLis', r = document.referrer, d = '$direct';
+  try { if (r) d = new URL(r).host; } catch (e) {}
+  var now = new Date().toISOString();
+  var p = { token: t, distinct_id: '$posthog_cookieless', $cookieless_mode: true, $lib: 'web',
+    $current_url: location.href, $host: location.host, $pathname: location.pathname, title: document.title,
+    $referrer: r || '$direct', $referring_domain: d, $raw_user_agent: navigator.userAgent.slice(0, 1000),
+    $timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, $browser_language: navigator.language,
+    $screen_width: screen.width, $screen_height: screen.height, $viewport_width: innerWidth, $viewport_height: innerHeight };
+  fetch('https://e.c-f-x.com/i/v0/e/', { method: 'POST', keepalive: true,
+    body: JSON.stringify({ api_key: t, batch: [{ event: '$pageview', properties: p, timestamp: now }], sent_at: now }) })
+    .catch(function(){});
 })();
 </script>
 </body>
