@@ -13,7 +13,7 @@ Each released tool gets a page at `c-f-x.com/<tool>/`, as plotplot.ai gives each
 | What it answers | Six to eight things it does, each in a person's words |
 | How | Numbered parts, one per face of the tool, with the shortest real code where it helps |
 | What it doesn't do | The limits, each named in a few words, then said plainly |
-| Install | What you need and what it costs, the commands, and the link to every step |
+| Install | What you need and what it costs, then the commands, starting with `git clone https://github.com/c-f-x/<tool>` and `cd <tool>`, and the link to every step |
 | Where it sits | Its neighbours in the family, with their marks; a tool not released yet keeps its grey mark and plain name |
 
 The page shares `site.css`, `site.js` and `marks.svg` with the home page, so a product page has no styles or scripts of its own. Copy is checked like the home page's: short sentences, no claim a reader cannot check. `npm run check` fails when a page refers to a file that is missing or loads anything from another site.

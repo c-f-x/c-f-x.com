@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cfx-mail · mail for your own domains, on your Cloudflare account</title>
+<link rel="canonical" href="https://c-f-x.com/cfx-mail/">
+<link rel="preload" href="/fonts/stack-sans-notch.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/krub-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<meta name="description" content="Mailboxes for your own domains, run on Cloudflare. People read and send mail in the browser, and your projects send their own mail, such as sign-in links, through an API key.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://c-f-x.com/cfx-mail/">
+<meta property="og:title" content="cfx-mail · mail for your own domains, on your Cloudflare account">
+<meta property="og:description" content="Mailboxes for your own domains, run on Cloudflare. People read and send mail in the browser, and your projects send their own mail, such as sign-in links, through an API key.">
+<script>(function(){var r=document.documentElement;r.classList.add('js');var s=null;try{s=localStorage.getItem('cfx-theme')}catch(e){}if(s)r.setAttribute('data-theme',s);else if(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)r.setAttribute('data-theme','dark');else r.setAttribute('data-theme','light');})();</script>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body id="top">
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+    <nav class="nav" aria-label="Site">
+      <a class="lbl" href="#why">Why</a>
+      <a class="lbl" href="#how">How</a>
+      <a class="lbl" href="#install">Install</a>
+      <a href="https://github.com/c-f-x/cfx-mail">Source <span aria-hidden="true">↗</span></a>
+      <button class="theme" id="theme" type="button" aria-label="Switch to dark theme">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 13.2A9 9 0 1 1 10.8 3 7 7 0 0 0 21 13.2z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="waysign" aria-label="Where this tool sits">
+  <div class="wrap">
+    <a href="/#tools">← c-f-x · the tools</a>
+    <span><span aria-hidden="true">B reach / 04</span> <span class="here">cfx-mail</span></span>
+    <span>05 cfx-launch · launch pages and signups, next</span>
+  </div>
+</nav>
+
+<main>
+  <section class="pp-hero" aria-labelledby="hero-title">
+    <div class="wrap g12">
+      <div class="pp-copy rise">
+        <svg class="mk-lg" aria-hidden="true"><use href="/marks.svg#m-cfx-mail"/></svg>
+        <h1 id="hero-title">Mail on your own domains.</h1>
+        <p class="pp-tag">mail for your domains</p>
+        <p class="lede">People read and send mail in the browser, at addresses on your domains. Your projects send their own mail, such as sign-in links, through an API key. It is one Cloudflare Worker, with no mail server to keep patched.</p>
+        <div class="cta">
+          <a class="btn primary" href="#install">Install <span aria-hidden="true">↓</span></a>
+          <a class="btn outline" href="https://github.com/c-f-x/cfx-mail">View source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="pp-shot rise">
+        <img src="/cfx-mail/inbox.png" width="1440" height="900" alt="The cfx-mail inbox across several accounts, with a conversation open. The mail is made up.">
+        <figcaption class="label">the inbox across several accounts · made-up mail</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <h2 class="label" id="proof-title">cfx-mail, as it runs · commit 6612999 · 12 nov 2026</h2>
+      <dl>
+        <div><dt>kinds of mailbox</dt><dd>4</dd></div>
+        <div><dt>deployment for all your domains</dt><dd>1</dd></div>
+        <div><dt>request for a project to send a mail</dt><dd>1</dd></div>
+        <div><dt>mail servers to keep patched</dt><dd>0</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" id="why" aria-labelledby="why-title">
+    <div class="margin"><p class="label">why</p></div>
+    <div class="content rise">
+      <h2 id="why-title">Your own addresses, without a mail server.</h2>
+      <p class="body">Mail on your own domains usually means a mail server to keep patched, or a hosted provider that holds every message. cfx-mail is one Cloudflare Worker with a D1 database and an R2 bucket. Cloudflare Email Routing brings mail in, and Email Sending takes it out. The people you invite read their mail in the browser, and your projects send their sign-in links and alerts through the same deployment.</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="answers-title">
+    <div class="margin"><p class="label" id="answers-title">what it does</p></div>
+    <ul class="content answers rise stagger">
+      <li style="--i:0">personal, group, temporary and service mailboxes</li>
+      <li style="--i:1">several domains, one sign-in, one inbox</li>
+      <li style="--i:2">conversations, search, labels, folders and rules</li>
+      <li style="--i:3">reminders, scheduled sending and push notifications</li>
+      <li style="--i:4">sender checks, spam scoring and blocklists</li>
+      <li style="--i:5">remote images through the Worker, tracking pixels removed</li>
+      <li style="--i:6">one-click unsubscribe, both ways</li>
+      <li style="--i:7">aliases and catch-alls, across domains</li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="how" aria-labelledby="how-title">
+    <div class="margin"><p class="label">how</p></div>
+    <div class="content">
+      <h2 id="how-title" class="rise">Invite people, then let your projects send</h2>
+      <ol class="faces">
+        <li class="rise"><span class="n" aria-hidden="true">1</span><div>
+          <h3>Invite people, and give them mailboxes</h3>
+          <p>An admin invites each person. A personal mailbox belongs to one person, a group mailbox is shared with read, write or manage rights, a temporary address deletes itself, and a service mailbox is for a project&#8217;s code.</p></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">2</span><div>
+          <h3>Mail arrives, and is checked on the way in</h3>
+          <p>Cloudflare Email Routing hands each message to the Worker. It checks the sender with SPF, DKIM and DMARC, scores it for spam, and checks public blocklists and one of your own, before the mail lands in its mailbox.</p></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">3</span><div>
+          <h3>Read and write in the browser</h3>
+          <p>One sign-in reaches every mailbox a person has, across domains, with an inbox that shows them all. Remote images load through the Worker, tracking pixels are removed, and location data is stripped from attached photos.</p></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">4</span><div>
+          <h3>Let a project send its own mail</h3>
+          <p>A project sends with one request and its service mailbox&#8217;s key. The mail goes out from that mailbox&#8217;s address, and a copy is kept in it:</p>
+          <pre class="code">curl -sS -X POST "https://mail.example.com/api/svc/send" \
+  -H "Authorization: Bearer $CFMAIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"to": [{"address": "person@example.org"}],
+       "subject": "Your sign-in link",
+       "text": "Open https://app.example.org/magic?token=abc"}'
+# 201 {"messageId":"…","threadId":"…"}</pre></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">5</span><div>
+          <h3>Keep a copy at home</h3>
+          <p>Backups go to a folder on your own machine, and can be restored from it.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="limits-title">
+    <div class="margin"><p class="label" id="limits-title">what it doesn&#8217;t do</p></div>
+    <ul class="content limits rise stagger">
+      <li style="--i:0"><b>mail apps</b><span>IMAP is built, but Cloudflare cannot expose it to the internet yet, so it is switched off.</span></li>
+      <li style="--i:1"><b>encryption</b><span>PGP is built and switched off.</span></li>
+      <li style="--i:2"><b>attachments by API</b><span>The send API takes text and HTML, and no attachments.</span></li>
+      <li style="--i:3"><b>sign-up</b><span>Nobody can sign up. An admin invites each person.</span></li>
+      <li style="--i:4"><b>admin passwords</b><span>Admins sign in only with a Cloudflare login that is a member of the deployment&#8217;s account.</span></li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="install" aria-labelledby="install-title">
+    <div class="margin"><p class="label">install</p></div>
+    <div class="content rise">
+      <h2 id="install-title">Install</h2>
+      <p class="body">You need a Cloudflare account on the Workers Paid plan, which starts at $5 a month, and a domain on Cloudflare with Email Routing and Email Sending turned on. Get the code, create a D1 database and an R2 bucket, write your values into a private site file, set three Worker secrets, then deploy:</p>
+      <pre class="code">git clone https://github.com/c-f-x/cfx-mail
+cd cfx-mail
+CFX_SITE=~/my-site npx -y pnpm@12.4.1 run deploy &lt;name&gt;</pre>
+      <p class="body">The deploy builds the app, applies the database migrations and deploys the Worker. Every step, written so a coding agent can follow it and so can you, is in <a href="https://github.com/c-f-x/cfx-mail/blob/master/AGENTS.md">AGENTS.md</a>, section 4.</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="sits-title">
+    <div class="margin"><p class="label" id="sits-title">where it sits</p></div>
+    <ul class="content sits rise stagger">
+      <li style="--i:0"><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><a class="who" href="https://github.com/c-f-x/cfx-kit">cfx-kit</a><span class="what">the family&#8217;s shared rules and checks</span></li>
+      <li style="--i:1"><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-launch"/></svg><span class="who">cfx-launch</span><span class="what">will send its sign-up confirmations through a service mailbox here. Next.</span></li>
+      <li style="--i:2"><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-analytics"/></svg><a class="who" href="/cfx-analytics/">cfx-analytics</a><span class="what">its sibling: the numbers for the same products</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="gf inverse">
+  <div class="wrap">
+    <div class="gf-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+        <p class="gf-soft">Self-hosted tools on Cloudflare, for a solo developer or a small team.</p>
+      </div>
+      <div>
+        <h2>The tools</h2>
+        <ul class="gf-tools">
+          <li><span class="sdot"></span><a href="/cfx-analytics/">cfx-analytics</a></li>
+          <li><span class="sdot"></span><a href="/cfx-mail/">cfx-mail</a></li>
+          <li><span class="sdot built"></span><a href="https://github.com/c-f-x/cfx-kit">cfx-kit</a></li>
+          <li><span class="sdot next"></span>cfx-errors</li>
+          <li><span class="sdot next"></span>cfx-status</li>
+          <li><span class="sdot next"></span>cfx-launch</li>
+          <li><span class="sdot next"></span>cfx-admin</li>
+          <li><span class="sdot later"></span>cfx-backup</li>
+        </ul>
+      </div>
+      <div>
+        <h2>The project</h2>
+        <p class="gf-soft">Open source, MIT licensed.</p>
+        <p class="gf-links"><a href="https://github.com/c-f-x">GitHub →</a><a href="https://buymeacoffee.com/jahala">Buy me a coffee →</a></p>
+      </div>
+    </div>
+    <div class="gf-bottom">
+      <span>© 2026 c-f-x · self-hosted tools on Cloudflare</span>
+      <span>Visits counted without cookies, in the EU, by <a href="/cfx-analytics/">cfx-analytics</a></span>
+      <span>Deploy once. Attach every product.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+</body>
+</html>

@@ -362,3 +362,14 @@
     .sits li{grid-template-columns:var(--cfx-space-8) minmax(0,1fr)}
     .sits .what{grid-column:2}
   }
+
+  /* product pages: motion. Short, once, and none at all for reduced motion. */
+  .nowrap{white-space:nowrap}
+  .js .pp-copy .mk-lg{animation:mk-in .45s var(--m-ease) .15s both}
+  .js .pp-shot.rise{transition-delay:.12s}
+  .js .stagger > li{opacity:0;transform:translateY(8px);transition:opacity .45s var(--m-ease),transform .45s var(--m-ease);transition-delay:calc(var(--i,0) * 45ms)}
+  .js .stagger.in > li{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .pp-copy .mk-lg{animation:none}
+    .js .stagger > li{opacity:1;transform:none;transition:none}
+  }

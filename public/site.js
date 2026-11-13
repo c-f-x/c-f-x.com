@@ -37,3 +37,27 @@
     body: JSON.stringify({ api_key: t, batch: [{ event: '$pageview', properties: p, timestamp: now }], sent_at: now }) })
     .catch(function(){});
 })();
+
+(function(){
+  // The proof band's numbers count up once as the band scrolls in. The page holds the final
+  // numbers, so without scripts, or with reduced motion, they simply show.
+  var nums=document.querySelectorAll('.proof dd');
+  if(!nums.length||!('IntersectionObserver' in window)) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var band=document.querySelector('.proof');
+  var io=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting) return; io.disconnect();
+    Array.prototype.forEach.call(nums,function(el){
+      var to=parseInt(el.textContent,10); if(!(to>1)) return;
+      var start=null;
+      function step(now){
+        if(!start) start=now;
+        var p=Math.min(1,(now-start)/700), e=1-Math.pow(1-p,3);
+        el.textContent=String(Math.round(to*e));
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  },{rootMargin:'0px 0px -10% 0px'});
+  io.observe(band);
+})();

@@ -49,7 +49,7 @@
         <svg class="mk-lg" aria-hidden="true"><use href="/marks.svg#m-cfx-analytics"/></svg>
         <h1 id="hero-title">Analytics on your own account.</h1>
         <p class="pp-tag">product analytics</p>
-        <p class="lede">Your sites and apps send events with PostHog&#8217;s own SDKs, unchanged. cfx-analytics keeps them on your Cloudflare account, records sessions, draws heatmaps and answers questions from one dashboard.</p>
+        <p class="lede">Your sites and apps send events with PostHog&#8217;s own SDKs, unchanged. <span class="nowrap">cfx-analytics</span> keeps them on your Cloudflare account, records sessions, draws heatmaps and answers questions from one dashboard.</p>
         <div class="cta">
           <a class="btn primary" href="#install">Install <span aria-hidden="true">↓</span></a>
           <a class="btn outline" href="https://github.com/c-f-x/cfx-analytics">View source <span aria-hidden="true">↗</span></a>
@@ -76,7 +76,7 @@
 
   <section class="pp-sec wrap g12" id="why" aria-labelledby="why-title">
     <div class="margin"><p class="label">why</p></div>
-    <div class="content">
+    <div class="content rise">
       <h2 id="why-title">Your visitors&#8217; data, on your own account.</h2>
       <p class="body">Hosted analytics keeps your visitors&#8217; data on someone else&#8217;s servers. cfx-analytics runs in your Cloudflare account instead, one deployment for every product you make. A product keeps the SDK it already uses and changes one line, the host it sends to. Each product&#8217;s data is kept apart, in the region you choose, for as long as you set.</p>
     </div>
@@ -84,42 +84,44 @@
 
   <section class="pp-sec wrap g12" aria-labelledby="answers-title">
     <div class="margin"><p class="label" id="answers-title">what it answers</p></div>
-    <ul class="content answers rise">
-      <li>how many came, against the week before</li>
-      <li>which pages, sources, countries and devices</li>
-      <li>where people drop out of a funnel</li>
-      <li>who comes back, week after week</li>
-      <li>how far down a page people read</li>
-      <li>what a visit looked like, as a recording</li>
-      <li>where people click, and where they click in vain</li>
-      <li>what your own product&#8217;s server asks, with its own key</li>
+    <ul class="content answers rise stagger">
+      <li style="--i:0">how many came, against the week before</li>
+      <li style="--i:1">which pages, sources, countries and devices</li>
+      <li style="--i:2">where people drop out of a funnel</li>
+      <li style="--i:3">who comes back, week after week</li>
+      <li style="--i:4">how far down a page people read</li>
+      <li style="--i:5">what a visit looked like, as a recording</li>
+      <li style="--i:6">where people click, and where they click in vain</li>
+      <li style="--i:7">what your own product&#8217;s server asks, with its own key</li>
     </ul>
   </section>
 
   <section class="pp-sec wrap g12" id="how" aria-labelledby="how-title">
     <div class="margin"><p class="label">how</p></div>
     <div class="content">
-      <h2 id="how-title">One line to connect, one place to read</h2>
+      <h2 id="how-title" class="rise">One line to connect, one place to read</h2>
       <ol class="faces">
-        <li><span class="n" aria-hidden="true">1</span><div>
+        <li class="rise"><span class="n" aria-hidden="true">1</span><div>
           <h3>Point a product at its own address</h3>
           <p>Each product sends to an address on its own domain, so a visitor&#8217;s browser sends to no one else&#8217;s. With posthog-js it is the host:</p>
           <pre class="code">posthog.init("&lt;the project&#8217;s public token&gt;", {
   api_host: "https://e.shop.example.com",
 })</pre></div></li>
-        <li><span class="n" aria-hidden="true">2</span><div>
+        <li class="rise"><span class="n" aria-hidden="true">2</span><div>
           <h3>Every product keeps its own store</h3>
           <p>Events, people, recordings and heatmap points live in the product&#8217;s own store, apart from every other product&#8217;s. Known bots, AI crawlers and your own visits are marked and left out of every answer, unless you ask for them.</p></div></li>
-        <li><span class="n" aria-hidden="true">3</span><div>
+        <li class="rise"><span class="n" aria-hidden="true">3</span><div>
           <h3>Read every product on one board</h3>
           <p>One dashboard holds every product. You sign in with your Cloudflare account, so there is no other password to keep.</p></div></li>
-        <li><span class="n" aria-hidden="true">4</span><div>
+        <li class="rise"><span class="n" aria-hidden="true">4</span><div>
           <h3>Let a product read its own numbers</h3>
           <p>A product&#8217;s server asks with a secret key, in the same shape the dashboard uses:</p>
           <pre class="code">curl https://e.shop.example.com/api/external/query \
   -H "Authorization: Bearer $CFANALYTICS_SECRET_KEY" \
-  -d '{"kind":"trend","measure":"visitors","granularity":"day","range":{"kind":"last_days","days":7}}'</pre></div></li>
-        <li><span class="n" aria-hidden="true">5</span><div>
+  -d '{"kind": "trend", "measure": "visitors",
+       "granularity": "day",
+       "range": {"kind": "last_days", "days": 7}}'</pre></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">5</span><div>
           <h3>Keep only what you mean to keep</h3>
           <p>Events, recordings and heatmap points each have a retention period, and a daily sweep removes what is older. A person can be erased on request, and a product&#8217;s data exported.</p></div></li>
       </ol>
@@ -128,20 +130,22 @@
 
   <section class="pp-sec wrap g12" aria-labelledby="limits-title">
     <div class="margin"><p class="label" id="limits-title">what it doesn&#8217;t do</p></div>
-    <ul class="content limits">
-      <li><b>flags and experiments</b><span>No feature flags, surveys or experiments.</span></li>
-      <li><b>errors</b><span>No error tracking. That is cfx-errors&#8217; job, next in the family.</span></li>
-      <li><b>PostHog&#8217;s query language</b><span>Questions are asked as JSON, in the shape the dashboard uses.</span></li>
-      <li><b>more people</b><span>The dashboard has one user, the owner of the Cloudflare account.</span></li>
+    <ul class="content limits rise stagger">
+      <li style="--i:0"><b>flags and experiments</b><span>No feature flags, surveys or experiments.</span></li>
+      <li style="--i:1"><b>errors</b><span>No error tracking. That is cfx-errors&#8217; job, next in the family.</span></li>
+      <li style="--i:2"><b>PostHog&#8217;s query language</b><span>Questions are asked as JSON, in the shape the dashboard uses.</span></li>
+      <li style="--i:3"><b>more people</b><span>The dashboard has one user, the owner of the Cloudflare account.</span></li>
     </ul>
   </section>
 
   <section class="pp-sec wrap g12" id="install" aria-labelledby="install-title">
     <div class="margin"><p class="label">install</p></div>
-    <div class="content">
+    <div class="content rise">
       <h2 id="install-title">Install</h2>
-      <p class="body">You need a Cloudflare account on the Workers Paid plan, which starts at $5 a month, a domain on Cloudflare for the dashboard, and Node 24. Make the stores and the sign-in client once, write your values into a private site file, then deploy. Every command prints its plan and how to undo each step, and changes nothing until you add <code>--go</code>:</p>
-      <pre class="code">pnpm install
+      <p class="body">You need a Cloudflare account on the Workers Paid plan, which starts at $5 a month, a domain on Cloudflare for the dashboard, and Node 24. Get the code, make the stores and the sign-in client once, write your values into a private site file, then deploy. Every command prints its plan and how to undo each step, and changes nothing until you add <code>--go</code>:</p>
+      <pre class="code">git clone https://github.com/c-f-x/cfx-analytics
+cd cfx-analytics
+pnpm install
 pnpm ops secrets production --go
 pnpm ops deploy production --go
 pnpm ops watch --go
@@ -152,10 +156,10 @@ pnpm smoke production</pre>
 
   <section class="pp-sec wrap g12" aria-labelledby="sits-title">
     <div class="margin"><p class="label" id="sits-title">where it sits</p></div>
-    <ul class="content sits">
-      <li><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><a class="who" href="https://github.com/c-f-x/cfx-kit">cfx-kit</a><span class="what">the shared checks and the deploy runner it stands on</span></li>
-      <li><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-status"/></svg><span class="who">cfx-status</span><span class="what">will watch that it answers, and tell you when it doesn&#8217;t. Next.</span></li>
-      <li><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-admin"/></svg><span class="who">cfx-admin</span><span class="what">will show its numbers beside each product&#8217;s people and plans. Next.</span></li>
+    <ul class="content sits rise stagger">
+      <li style="--i:0"><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><a class="who" href="https://github.com/c-f-x/cfx-kit">cfx-kit</a><span class="what">the shared checks and the deploy runner it stands on</span></li>
+      <li style="--i:1"><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-status"/></svg><span class="who">cfx-status</span><span class="what">will watch that it answers, and tell you when it doesn&#8217;t. Next.</span></li>
+      <li style="--i:2"><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-admin"/></svg><span class="who">cfx-admin</span><span class="what">will show its numbers beside each product&#8217;s people and plans. Next.</span></li>
     </ul>
   </section>
 </main>
@@ -171,7 +175,7 @@ pnpm smoke production</pre>
         <h2>The tools</h2>
         <ul class="gf-tools">
           <li><span class="sdot"></span><a href="/cfx-analytics/">cfx-analytics</a></li>
-          <li><span class="sdot"></span><a href="https://github.com/c-f-x/cfx-mail">cfx-mail</a></li>
+          <li><span class="sdot"></span><a href="/cfx-mail/">cfx-mail</a></li>
           <li><span class="sdot built"></span><a href="https://github.com/c-f-x/cfx-kit">cfx-kit</a></li>
           <li><span class="sdot next"></span>cfx-errors</li>
           <li><span class="sdot next"></span>cfx-status</li>
