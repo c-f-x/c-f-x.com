@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cfx-analytics · product analytics on your own Cloudflare account</title>
+<link rel="canonical" href="https://c-f-x.com/cfx-analytics/">
+<link rel="preload" href="/fonts/stack-sans-notch.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/krub-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<meta name="description" content="Product analytics that runs in your own Cloudflare account. Your sites and apps send events with PostHog's own SDKs, and cfx-analytics keeps them, records sessions and draws heatmaps.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://c-f-x.com/cfx-analytics/">
+<meta property="og:title" content="cfx-analytics · product analytics on your own Cloudflare account">
+<meta property="og:description" content="Product analytics that runs in your own Cloudflare account. Your sites and apps send events with PostHog's own SDKs, and cfx-analytics keeps them, records sessions and draws heatmaps.">
+<script>(function(){var r=document.documentElement;r.classList.add('js');var s=null;try{s=localStorage.getItem('cfx-theme')}catch(e){}if(s)r.setAttribute('data-theme',s);else if(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)r.setAttribute('data-theme','dark');else r.setAttribute('data-theme','light');})();</script>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body id="top">
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+    <nav class="nav" aria-label="Site">
+      <a class="lbl" href="#why">Why</a>
+      <a class="lbl" href="#how">How</a>
+      <a class="lbl" href="#install">Install</a>
+      <a href="https://github.com/c-f-x/cfx-analytics">Source <span aria-hidden="true">↗</span></a>
+      <button class="theme" id="theme" type="button" aria-label="Switch to dark theme">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 13.2A9 9 0 1 1 10.8 3 7 7 0 0 0 21 13.2z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="waysign" aria-label="Where this tool sits">
+  <div class="wrap">
+    <a href="/#tools">← c-f-x · the tools</a>
+    <span><span aria-hidden="true">A watch / 01</span> <span class="here">cfx-analytics</span></span>
+    <span>02 cfx-errors · error tracking, next</span>
+  </div>
+</nav>
+
+<main>
+  <section class="pp-hero" aria-labelledby="hero-title">
+    <div class="wrap g12">
+      <div class="pp-copy rise">
+        <svg class="mk-lg" aria-hidden="true"><use href="/marks.svg#m-cfx-analytics"/></svg>
+        <h1 id="hero-title">Analytics on your own account.</h1>
+        <p class="pp-tag">product analytics</p>
+        <p class="lede">Your sites and apps send events with PostHog&#8217;s own SDKs, unchanged. cfx-analytics keeps them on your Cloudflare account, records sessions, draws heatmaps and answers questions from one dashboard.</p>
+        <div class="cta">
+          <a class="btn primary" href="#install">Install <span aria-hidden="true">↓</span></a>
+          <a class="btn outline" href="https://github.com/c-f-x/cfx-analytics">View source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="pp-shot rise">
+        <img src="/cfx-analytics/board.png" width="1440" height="960" alt="The board of one product: visitors, page views and sessions over the last 7 days against the 7 before, with its top pages, sources, countries and devices.">
+        <figcaption class="label">the board for one product</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <h2 class="label" id="proof-title">cfx-analytics, as it runs · commit 4589a33 · 12 nov 2026</h2>
+      <dl>
+        <div><dt>PostHog SDKs it takes, unchanged</dt><dd>3</dd></div>
+        <div><dt>cookies it sets</dt><dd>0</dd></div>
+        <div><dt>deployment for all your products</dt><dd>1</dd></div>
+        <div><dt>days it keeps events, by default</dt><dd>395</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" id="why" aria-labelledby="why-title">
+    <div class="margin"><p class="label">why</p></div>
+    <div class="content">
+      <h2 id="why-title">Your visitors&#8217; data, on your own account.</h2>
+      <p class="body">Hosted analytics keeps your visitors&#8217; data on someone else&#8217;s servers. cfx-analytics runs in your Cloudflare account instead, one deployment for every product you make. A product keeps the SDK it already uses and changes one line, the host it sends to. Each product&#8217;s data is kept apart, in the region you choose, for as long as you set.</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="answers-title">
+    <div class="margin"><p class="label" id="answers-title">what it answers</p></div>
+    <ul class="content answers rise">
+      <li>how many came, against the week before</li>
+      <li>which pages, sources, countries and devices</li>
+      <li>where people drop out of a funnel</li>
+      <li>who comes back, week after week</li>
+      <li>how far down a page people read</li>
+      <li>what a visit looked like, as a recording</li>
+      <li>where people click, and where they click in vain</li>
+      <li>what your own product&#8217;s server asks, with its own key</li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="how" aria-labelledby="how-title">
+    <div class="margin"><p class="label">how</p></div>
+    <div class="content">
+      <h2 id="how-title">One line to connect, one place to read</h2>
+      <ol class="faces">
+        <li><span class="n" aria-hidden="true">1</span><div>
+          <h3>Point a product at its own address</h3>
+          <p>Each product sends to an address on its own domain, so a visitor&#8217;s browser sends to no one else&#8217;s. With posthog-js it is the host:</p>
+          <pre class="code">posthog.init("&lt;the project&#8217;s public token&gt;", {
+  api_host: "https://e.shop.example.com",
+})</pre></div></li>
+        <li><span class="n" aria-hidden="true">2</span><div>
+          <h3>Every product keeps its own store</h3>
+          <p>Events, people, recordings and heatmap points live in the product&#8217;s own store, apart from every other product&#8217;s. Known bots, AI crawlers and your own visits are marked and left out of every answer, unless you ask for them.</p></div></li>
+        <li><span class="n" aria-hidden="true">3</span><div>
+          <h3>Read every product on one board</h3>
+          <p>One dashboard holds every product. You sign in with your Cloudflare account, so there is no other password to keep.</p></div></li>
+        <li><span class="n" aria-hidden="true">4</span><div>
+          <h3>Let a product read its own numbers</h3>
+          <p>A product&#8217;s server asks with a secret key, in the same shape the dashboard uses:</p>
+          <pre class="code">curl https://e.shop.example.com/api/external/query \
+  -H "Authorization: Bearer $CFANALYTICS_SECRET_KEY" \
+  -d '{"kind":"trend","measure":"visitors","granularity":"day","range":{"kind":"last_days","days":7}}'</pre></div></li>
+        <li><span class="n" aria-hidden="true">5</span><div>
+          <h3>Keep only what you mean to keep</h3>
+          <p>Events, recordings and heatmap points each have a retention period, and a daily sweep removes what is older. A person can be erased on request, and a product&#8217;s data exported.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="limits-title">
+    <div class="margin"><p class="label" id="limits-title">what it doesn&#8217;t do</p></div>
+    <ul class="content limits">
+      <li><b>flags and experiments</b><span>No feature flags, surveys or experiments.</span></li>
+      <li><b>errors</b><span>No error tracking. That is cfx-errors&#8217; job, next in the family.</span></li>
+      <li><b>PostHog&#8217;s query language</b><span>Questions are asked as JSON, in the shape the dashboard uses.</span></li>
+      <li><b>more people</b><span>The dashboard has one user, the owner of the Cloudflare account.</span></li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="install" aria-labelledby="install-title">
+    <div class="margin"><p class="label">install</p></div>
+    <div class="content">
+      <h2 id="install-title">Install</h2>
+      <p class="body">You need a Cloudflare account on the Workers Paid plan, which starts at $5 a month, a domain on Cloudflare for the dashboard, and Node 24. Make the stores and the sign-in client once, write your values into a private site file, then deploy. Every command prints its plan and how to undo each step, and changes nothing until you add <code>--go</code>:</p>
+      <pre class="code">pnpm install
+pnpm ops secrets production --go
+pnpm ops deploy production --go
+pnpm ops watch --go
+pnpm smoke production</pre>
+      <p class="body">Every step is in the <a href="https://github.com/c-f-x/cfx-analytics#run-your-own">README</a>.</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="sits-title">
+    <div class="margin"><p class="label" id="sits-title">where it sits</p></div>
+    <ul class="content sits">
+      <li><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><a class="who" href="https://github.com/c-f-x/cfx-kit">cfx-kit</a><span class="what">the shared checks and the deploy runner it stands on</span></li>
+      <li><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-status"/></svg><span class="who">cfx-status</span><span class="what">will watch that it answers, and tell you when it doesn&#8217;t. Next.</span></li>
+      <li><svg class="mk soon" aria-hidden="true"><use href="/marks.svg#m-cfx-admin"/></svg><span class="who">cfx-admin</span><span class="what">will show its numbers beside each product&#8217;s people and plans. Next.</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="gf inverse">
+  <div class="wrap">
+    <div class="gf-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+        <p class="gf-soft">Self-hosted tools on Cloudflare, for a solo developer or a small team.</p>
+      </div>
+      <div>
+        <h2>The tools</h2>
+        <ul class="gf-tools">
+          <li><span class="sdot"></span><a href="/cfx-analytics/">cfx-analytics</a></li>
+          <li><span class="sdot"></span><a href="https://github.com/c-f-x/cfx-mail">cfx-mail</a></li>
+          <li><span class="sdot built"></span><a href="https://github.com/c-f-x/cfx-kit">cfx-kit</a></li>
+          <li><span class="sdot next"></span>cfx-errors</li>
+          <li><span class="sdot next"></span>cfx-status</li>
+          <li><span class="sdot next"></span>cfx-launch</li>
+          <li><span class="sdot next"></span>cfx-admin</li>
+          <li><span class="sdot later"></span>cfx-backup</li>
+        </ul>
+      </div>
+      <div>
+        <h2>The project</h2>
+        <p class="gf-soft">Open source, MIT licensed.</p>
+        <p class="gf-links"><a href="https://github.com/c-f-x">GitHub →</a><a href="https://buymeacoffee.com/jahala">Buy me a coffee →</a></p>
+      </div>
+    </div>
+    <div class="gf-bottom">
+      <span>© 2026 c-f-x · self-hosted tools on Cloudflare</span>
+      <span>Visits counted without cookies, in the EU, by <a href="/cfx-analytics/">cfx-analytics</a></span>
+      <span>Deploy once. Attach every product.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+</body>
+</html>

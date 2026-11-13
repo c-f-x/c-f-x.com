@@ -1,25 +1,33 @@
 // The checks CI runs on every pull request and on master, stopping at the first failure:
-// 1. Every file the page refers to on its own site exists in public/.
-// 2. The page loads nothing from another site: c-f-x is self-hosted, and so is its page.
+// 1. Every file a page or stylesheet refers to on its own site exists in public/.
+// 2. No page loads anything from another site: c-f-x is self-hosted, and so is its site.
 //    Links a person clicks (<a href>) may point anywhere.
 // 3. Wrangler accepts the config and the assets (a dry run, which uploads nothing).
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const html = readFileSync(path.join(root, "public/index.html"), "utf8");
 const problems = [];
 
-// Everything the browser fetches by itself: src= attributes, <link href>, and url() in CSS.
+// Every page and stylesheet under public/, as text.
+const pub = path.join(root, "public");
+const files = readdirSync(pub, { recursive: true })
+  .map(String)
+  .filter((f) => f.endsWith(".html") || f.endsWith(".css"))
+  .map((f) => readFileSync(path.join(pub, f), "utf8"));
+const text = files.join("\n");
+
+// Everything the browser fetches by itself: src= attributes, <link href>, <use href>, and url() in CSS.
 const fetched = [
-  ...[...html.matchAll(/\ssrc="([^"]+)"/g)].map((m) => m[1]),
-  ...[...html.matchAll(/<link\b[^>]*\shref="([^"]+)"/g)].map((m) => m[1]),
-  ...[...html.matchAll(/url\(([^)]+)\)/g)].map((m) => m[1].replace(/^['"]|['"]$/g, "")),
+  ...[...text.matchAll(/\ssrc="([^"]+)"/g)].map((m) => m[1]),
+  ...[...text.matchAll(/<link\b[^>]*\shref="([^"]+)"/g)].map((m) => m[1]),
+  ...[...text.matchAll(/<use\b[^>]*\shref="([^"#]+)#[^"]*"/g)].map((m) => m[1]),
+  ...[...text.matchAll(/url\(([^)]+)\)/g)].map((m) => m[1].replace(/^['"]|['"]$/g, "")),
 ];
 for (const ref of fetched) {
   if (ref.startsWith("data:") || ref.startsWith("#")) continue;
-  if (ref === "https://c-f-x.com/") continue; // the canonical address names the page itself
+  if (ref.startsWith("https://c-f-x.com/")) continue; // a canonical address names the page itself
   if (/^[a-z]+:/i.test(ref) || ref.startsWith("//")) {
     problems.push(`the page loads ${ref} from another site`);
   } else if (!existsSync(path.join(root, "public", ref.split(/[?#]/)[0]))) {

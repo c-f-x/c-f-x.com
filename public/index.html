@@ -14,308 +14,7 @@
 <meta property="og:title" content="c-f-x · self-hosted tools on Cloudflare">
 <meta property="og:description" content="c-f-x is a family of self-hosted tools for a solo developer or a small team. Each tool runs on your own Cloudflare account.">
 <script>(function(){var r=document.documentElement;r.classList.add('js');var s=null;try{s=localStorage.getItem('cfx-theme')}catch(e){}if(s)r.setAttribute('data-theme',s);else if(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)r.setAttribute('data-theme','dark');else r.setAttribute('data-theme','light');})();</script>
-<style>
-  /* Fonts, latin, under the SIL Open Font License 1.1 (fonts/OFL-*.txt): Stack Sans Notch for titles,
-     Krub for body text. The owner's picks, 2026-11-11 and 2026-11-12. */
-  @font-face{font-family:'Stack Sans Notch';font-style:normal;font-weight:200 700;font-display:swap;src:url(/fonts/stack-sans-notch.woff2) format('woff2')}
-  @font-face{font-family:'Krub';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/krub-400.woff2) format('woff2')}
-  @font-face{font-family:'Krub';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/krub-500.woff2) format('woff2')}
-  @font-face{font-family:'Krub';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/krub-600.woff2) format('woff2')}
-
-  /* ── c-f-x tokens, copied from the brand's tokens.css ── */
-  :root{
-    --cfx-primary:#086A72; --cfx-primary-foreground:#FFFFFF;
-    --cfx-accent:#EEEEEE; --cfx-accent-foreground:#121212;
-    --cfx-text:#121212; --cfx-text-soft:#555555;
-    --cfx-bg:#FAFAFA; --cfx-surface:#FFFFFF; --cfx-surface-foreground:#121212;
-    --cfx-muted:#F3F3F3; --cfx-secondary:#F3F3F3; --cfx-secondary-foreground:#1B1B1B;
-    --cfx-border:#DFDFDF; --cfx-input:#E4E4E4; --cfx-ring:#356D73;
-    --cfx-success:#20A04E;
-
-    --cfx-font-heading:"Stack Sans Notch", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --cfx-font-body:"Krub", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --cfx-mark-soon:#7A7A7A;
-    --cfx-font-code:ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", monospace;
-
-    --cfx-space-0-5:2px; --cfx-space-1:4px; --cfx-space-1-5:6px; --cfx-space-2:8px; --cfx-space-2-5:10px;
-    --cfx-space-3:12px; --cfx-space-4:16px; --cfx-space-5:20px; --cfx-space-6:24px; --cfx-space-8:32px;
-    --cfx-space-9:36px; --cfx-space-11:44px; --cfx-space-12:48px; --cfx-space-14:56px;
-
-    --cfx-radius-md:6px; --cfx-radius-lg:8px; --cfx-radius-xl:12px;
-    --cfx-stroke-hairline:1px; --cfx-stroke-emphasis:2px;
-    --cfx-shadow-sm:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --cfx-ease:cubic-bezier(0.4, 0, 0.2, 1); --cfx-dur-micro:150ms;
-
-    /* this page's extension: larger steps on the same 4px Tailwind scale,
-       a 1200px container and a display type scale. The brand's ramp stops at 20px. */
-    --cfx-space-16:64px; --cfx-space-24:96px; --cfx-space-32:128px;
-    --cfx-container:1200px;
-    --t-12:12px; --t-14:14px; --t-16:16px; --t-20:20px; --t-24:24px; --t-32:32px; --t-48:48px; --t-64:64px; --t-96:96px;
-  }
-  /* The dark theme, and the inverse bands in light mode, read the same dark values (one home). */
-  [data-theme="dark"], .inverse{
-    --cfx-primary:#50BDC8; --cfx-primary-foreground:#0D0D0D;
-    --cfx-accent:#242424; --cfx-accent-foreground:#F2F2F2;
-    --cfx-text:#F2F2F2; --cfx-text-soft:#929292;
-    --cfx-bg:#0D0D0D; --cfx-surface:#161616; --cfx-surface-foreground:#F2F2F2;
-    --cfx-muted:#1B1B1B; --cfx-secondary:#1F1F1F; --cfx-secondary-foreground:#F2F2F2;
-    --cfx-border:#292929; --cfx-input:#242424; --cfx-ring:#69BAC2;
-    --cfx-success:#43B966;
-    --cfx-shadow-sm:none;
-  }
-
-  /* ── base ── */
-  *,*::before,*::after{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--cfx-bg);color:var(--cfx-text);
-    font-family:var(--cfx-font-body);font-size:var(--t-16);line-height:1.55;letter-spacing:-0.005em;
-    font-feature-settings:"cv11","ss01","ss03";-webkit-font-smoothing:antialiased}
-  h1,h2,h3,p,ol,ul,figure{margin:0}
-  ol,ul{padding:0;list-style:none}
-  a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
-  :focus-visible{outline:var(--cfx-stroke-emphasis) solid var(--cfx-ring);outline-offset:var(--cfx-space-0-5);border-radius:var(--cfx-radius-md)}
-  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .wrap{max-width:var(--cfx-container);margin:0 auto;padding:0 var(--cfx-space-8)}
-  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--cfx-space-6)}
-  .margin{grid-column:1 / span 3}
-  .content{grid-column:4 / -1}
-  .label{font-size:var(--t-12);font-weight:500;line-height:1.4;letter-spacing:0.05em;text-transform:uppercase;color:var(--cfx-text-soft)}
-  .lede{font-size:var(--t-20);line-height:1.5;color:var(--cfx-text-soft);max-width:36ch;text-wrap:pretty}
-
-  /* ── header ── */
-  .site{position:sticky;top:0;z-index:10;background:var(--cfx-bg);border-bottom:var(--cfx-stroke-hairline) solid var(--cfx-border)}
-  .bar{display:flex;align-items:center;justify-content:space-between;gap:var(--cfx-space-4);min-height:var(--cfx-space-14)}
-  .wordmark{font-family:var(--cfx-font-heading);font-weight:600;font-size:var(--t-20);letter-spacing:-0.025em;text-decoration:none;color:var(--cfx-text);line-height:1}
-  .nav{display:flex;align-items:center;gap:var(--cfx-space-1)}
-  .nav a{font-size:var(--t-14);font-weight:500;color:var(--cfx-text-soft);text-decoration:none;padding:var(--cfx-space-2) var(--cfx-space-3);border-radius:var(--cfx-radius-md);
-    transition:background-color var(--cfx-dur-micro) var(--cfx-ease),color var(--cfx-dur-micro) var(--cfx-ease)}
-  .nav a:hover{background:var(--cfx-accent);color:var(--cfx-accent-foreground)}
-  .theme{display:inline-grid;place-items:center;width:var(--cfx-space-9);height:var(--cfx-space-9);margin-left:var(--cfx-space-1);
-    border:0;border-radius:var(--cfx-radius-md);background:transparent;color:var(--cfx-text-soft);cursor:pointer;
-    transition:background-color var(--cfx-dur-micro) var(--cfx-ease),color var(--cfx-dur-micro) var(--cfx-ease)}
-  .theme:hover{background:var(--cfx-accent);color:var(--cfx-accent-foreground)}
-  .theme svg{width:var(--cfx-space-4);height:var(--cfx-space-4)}
-  .theme .sun{display:none}
-  [data-theme="dark"] .theme .sun{display:block}
-  [data-theme="dark"] .theme .moon{display:none}
-
-  /* ── hero ── */
-  .hero-grid{padding-top:var(--cfx-space-24);padding-bottom:var(--cfx-space-24);row-gap:var(--cfx-space-12);align-items:center}
-  .hero-copy{grid-column:1 / span 7}
-  .hero h1{font-family:var(--cfx-font-heading);font-size:var(--t-96);line-height:0.95;font-weight:600;letter-spacing:-0.045em;text-wrap:balance}
-  .hero .lede{margin-top:var(--cfx-space-8)}
-  .cta{display:flex;flex-wrap:wrap;gap:var(--cfx-space-3);margin-top:var(--cfx-space-8)}
-  .btn{display:inline-flex;align-items:center;gap:var(--cfx-space-2);height:var(--cfx-space-11);padding:0 var(--cfx-space-5);
-    font-size:var(--t-16);font-weight:500;line-height:1;text-decoration:none;white-space:nowrap;
-    border:var(--cfx-stroke-hairline) solid transparent;border-radius:var(--cfx-radius-md);
-    transition:background-color var(--cfx-dur-micro) var(--cfx-ease)}
-  .btn.primary{background:var(--cfx-primary);color:var(--cfx-primary-foreground);box-shadow:var(--cfx-shadow-sm)}
-  .btn.primary:hover{background:color-mix(in srgb,var(--cfx-primary) 90%,transparent)}
-  .btn.outline{border-color:var(--cfx-border);color:var(--cfx-text);background:transparent}
-  .btn.outline:hover{background:var(--cfx-accent);color:var(--cfx-accent-foreground)}
-
-  /* the family map: the hero figure. Like a site plan: one line runs down the account,
-     each category is a node on it, and its tools branch off to the right. */
-  .map{grid-column:8 / -1;background:var(--cfx-surface);border:var(--cfx-stroke-hairline) solid var(--cfx-border);border-radius:var(--cfx-radius-lg);
-    box-shadow:var(--cfx-shadow-sm);padding:var(--cfx-space-5)}
-  .map-head,.map-row{position:relative;display:grid;grid-template-columns:var(--cfx-space-8) minmax(0,1fr);column-gap:var(--cfx-space-4);align-items:center}
-  .map-head{padding-bottom:var(--cfx-space-3)}
-  .map-row{padding:var(--cfx-space-1-5) 0}
-  .map-head::before,.map-row::before{content:"";position:absolute;left:calc(var(--cfx-space-4) - 1px);width:2px;top:0;bottom:0;background:var(--cfx-border)}
-  .map-head::before{top:50%}
-  .map-row:last-child::before{bottom:50%}
-  .map-row::after{content:"";position:absolute;left:var(--cfx-space-8);width:var(--cfx-space-4);top:calc(50% - 1px);height:2px;background:var(--cfx-border)}
-  .map-head .root{position:relative;z-index:1;justify-self:center;width:var(--cfx-space-3);height:var(--cfx-space-3);border-radius:2px;background:var(--cfx-text)}
-  .map-head .acct-line{display:flex;justify-content:space-between;align-items:baseline;gap:var(--cfx-space-4);flex-wrap:wrap}
-  .map-head .acct{font-size:var(--t-14);font-weight:600;color:var(--cfx-text);letter-spacing:-0.005em;text-transform:none}
-  .node{position:relative;z-index:1;display:grid;place-items:center;width:var(--cfx-space-8);height:var(--cfx-space-8);border-radius:50%;
-    background:var(--cfx-surface);box-shadow:inset 0 0 0 2px var(--cfx-text);font-size:var(--t-14);font-weight:600;color:var(--cfx-text)}
-  .node.kit{background:radial-gradient(circle,var(--cfx-text) 0 5px,var(--cfx-surface) 5.5px)}
-  .node .label{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:var(--cfx-space-0-5);padding:0 var(--cfx-space-0-5);
-    background:var(--cfx-surface);font-size:var(--t-12);line-height:1.4;white-space:nowrap;color:var(--cfx-text-soft)}
-  .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--cfx-space-2)}
-  .tile{background:var(--cfx-secondary);border-radius:var(--cfx-radius-md);padding:var(--cfx-space-2-5) var(--cfx-space-3);
-    display:flex;flex-direction:column;gap:var(--cfx-space-2)}
-  .tiles > li{display:grid}
-  .tiles > li.span{grid-column:1 / -1}
-  a.tile{color:inherit;text-decoration:none;transition:background-color var(--cfx-dur-micro) var(--cfx-ease)}
-  a.tile:hover{background:color-mix(in srgb,var(--cfx-text) 8%,var(--cfx-secondary))}
-  a.tile:hover .t-name{text-decoration:underline;text-underline-offset:0.2em}
-  .tile .t-name{font-size:var(--t-14);font-weight:600;letter-spacing:-0.01em;color:var(--cfx-secondary-foreground);line-height:1.2;white-space:nowrap}
-  .tile.wide{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:var(--cfx-space-3)}
-  .tile .t-role{font-size:var(--t-14);color:var(--cfx-text-soft)}
-  .mk{width:var(--cfx-space-8);height:var(--cfx-space-8);flex:none;display:block}
-  /* a tool not released yet: its mark on the brand teal with the colour taken out, about 20% lighter, oklch(0.581 0 0) */
-  .soon{--mk-fill:var(--cfx-mark-soon)}
-  /* and its name 40% of the way toward the background: lighter on the light canvas, dimmer on the dark one */
-  .tile:has(.soon) .t-name,.bed:has(.plate.soon) .bed-name{color:color-mix(in oklch,var(--cfx-text) 60%,var(--cfx-bg))}
-  .st{display:inline-flex;align-items:center;gap:var(--cfx-space-1-5)}
-  .sdot{width:var(--cfx-space-2);height:var(--cfx-space-2);border-radius:50%;flex:none;background:var(--cfx-success)}
-  .sdot.built{background:var(--cfx-text-soft)}
-  .sdot.next{background:transparent;box-shadow:inset 0 0 0 1.5px var(--cfx-text-soft)}
-  .sdot.later{background:transparent;border:1.5px dashed var(--cfx-text-soft);box-sizing:border-box}
-
-  /* ── motto ── */
-  .motto{border-top:var(--cfx-stroke-hairline) solid var(--cfx-border);border-bottom:var(--cfx-stroke-hairline) solid var(--cfx-border)}
-  .motto .wrap{padding-top:var(--cfx-space-16);padding-bottom:var(--cfx-space-16);text-align:center}
-  .m-line{font-family:var(--cfx-font-heading);font-size:var(--t-48);font-weight:600;line-height:1.05;letter-spacing:-0.035em;text-wrap:balance}
-  .m-sub{margin:var(--cfx-space-4) auto 0;font-size:var(--t-20);line-height:1.5;color:var(--cfx-text-soft);max-width:54ch;text-wrap:pretty}
-
-  /* ── the tools ── */
-  .index{padding-top:var(--cfx-space-24);padding-bottom:var(--cfx-space-24)}
-  .index-head{row-gap:var(--cfx-space-4);margin-bottom:var(--cfx-space-16)}
-  .index-head .label{padding-top:var(--cfx-space-3)}
-  .index h2,.why h2{font-family:var(--cfx-font-heading);font-size:var(--t-48);line-height:1.05;font-weight:600;letter-spacing:-0.035em;text-wrap:balance}
-  .index-head .lede{margin-top:var(--cfx-space-6)}
-  .row{padding-top:var(--cfx-space-8);padding-bottom:var(--cfx-space-12);border-top:var(--cfx-stroke-hairline) solid var(--cfx-border);row-gap:var(--cfx-space-6)}
-  .row h3{font-family:var(--cfx-font-heading);font-size:var(--t-32);line-height:1.1;font-weight:600;letter-spacing:-0.03em;
-    display:flex;align-items:baseline;gap:var(--cfx-space-3)}
-  .row h3 .rl{font-size:var(--t-20);font-weight:500;color:var(--cfx-text-soft);letter-spacing:0}
-  .row-q{margin-top:var(--cfx-space-2);font-size:var(--t-14);line-height:1.5;color:var(--cfx-text-soft);max-width:24ch}
-  .beds{display:grid;row-gap:var(--cfx-space-8)}
-  .bed{display:grid;grid-template-columns:var(--cfx-space-11) minmax(0,13rem) minmax(0,1fr) 5rem;column-gap:var(--cfx-space-6);align-items:start}
-  .plate{width:var(--cfx-space-11);height:var(--cfx-space-11);display:block}
-  .plate svg{width:100%;height:100%;display:block}
-  a.bed-name{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:0.18em;text-decoration-thickness:2px;
-    transition:text-decoration-color var(--cfx-dur-micro) var(--cfx-ease)}
-  a.bed-name:hover{text-decoration-color:currentColor}
-  a.bed-name .ext{font-size:0.7em;color:var(--cfx-text-soft)}
-  /* a linked pill: no underline; the whole pill is the link and lightens on hover */
-  .gf-tools li:has(a){position:relative;transition:background-color var(--cfx-dur-micro) var(--cfx-ease)}
-  .gf-tools li:has(a):hover{background:color-mix(in srgb,var(--cfx-accent-foreground) 14%,var(--cfx-accent))}
-  .gf-tools a{color:inherit;text-decoration:none}
-  .gf-tools a::after{content:"";position:absolute;inset:0;border-radius:999px}
-  .bed-name{display:block;font-family:var(--cfx-font-heading);font-size:var(--t-24);font-weight:600;line-height:1.15;letter-spacing:-0.025em}
-  .bed .role{display:block;margin-top:var(--cfx-space-1)}
-  .bed .desc{color:var(--cfx-text-soft);max-width:52ch;text-wrap:pretty;padding-top:var(--cfx-space-0-5)}
-  .bed .st{justify-self:end;padding-top:var(--cfx-space-1-5)}
-
-  /* ── how a product attaches: the band ── */
-  .attach{background:var(--cfx-bg);color:var(--cfx-text)}
-  [data-theme="dark"] .attach{background:var(--cfx-surface)}
-  .attach .wrap{padding-top:var(--cfx-space-16);padding-bottom:var(--cfx-space-16)}
-  .attach .g12{align-items:center}
-  .attach-fig{display:grid;grid-template-columns:auto minmax(var(--cfx-space-12),1fr) auto;align-items:center}
-  .hosts li{height:var(--cfx-space-14);display:flex;align-items:center;font-family:var(--cfx-font-code);font-size:var(--t-20);color:var(--cfx-text)}
-  .hosts li span{color:var(--cfx-text-soft)}
-  .fan{width:100%;height:calc(var(--cfx-space-14) * 3);display:block}
-  .fan path{fill:none;stroke:var(--cfx-text-soft);stroke-width:1.5}
-  .down{display:none}
-  .dest{border:var(--cfx-stroke-emphasis) solid var(--cfx-text);border-radius:var(--cfx-radius-lg);padding:var(--cfx-space-5) var(--cfx-space-6)}
-  .dest .d-name{display:block;font-family:var(--cfx-font-heading);font-size:var(--t-32);font-weight:600;letter-spacing:-0.03em;line-height:1.1}
-  .dest .label{display:block;margin-top:var(--cfx-space-2)}
-  .attach .margin p + p{margin-top:var(--cfx-space-3);font-size:var(--t-14);color:var(--cfx-text-soft);max-width:28ch}
-
-  /* ── why ── */
-  .why{background:var(--cfx-muted);padding-top:var(--cfx-space-24);padding-bottom:var(--cfx-space-24)}
-  .why-head{margin-bottom:var(--cfx-space-12)}
-  .why-head > div{grid-column:1 / span 8}
-  .why-head .label{margin-bottom:var(--cfx-space-3)}
-  .principles{row-gap:var(--cfx-space-12)}
-  .principle{grid-column:span 4;border-top:var(--cfx-stroke-emphasis) solid var(--cfx-text);padding-top:var(--cfx-space-4);
-    display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--cfx-space-4);align-content:start}
-  .principle .num{grid-row:1 / span 2;font-family:var(--cfx-font-heading);font-size:var(--t-64);font-weight:600;line-height:0.85;letter-spacing:-0.04em}
-  .principle .arrow{display:block;margin-bottom:var(--cfx-space-1)}
-  .principle h3{font-family:var(--cfx-font-heading);font-size:var(--t-24);line-height:1.15;font-weight:600;letter-spacing:-0.025em}
-  .principle p{grid-column:2;margin-top:var(--cfx-space-2);color:var(--cfx-text-soft);text-wrap:pretty}
-
-  /* ── footer ── */
-  .gf{background:var(--cfx-bg);color:var(--cfx-text)}
-  [data-theme="dark"] .gf{background:var(--cfx-surface)}
-  .gf .wrap{padding-top:var(--cfx-space-16);padding-bottom:var(--cfx-space-8)}
-  .gf-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:var(--cfx-space-12)}
-  .gf h2{font-size:var(--t-14);font-weight:600;letter-spacing:-0.005em;margin-bottom:var(--cfx-space-4)}
-  .gf .wordmark{font-size:var(--t-32)}
-  .gf-soft{margin-top:var(--cfx-space-3);color:var(--cfx-text-soft);font-size:var(--t-14);max-width:40ch}
-  .gf-tools{display:flex;flex-wrap:wrap;gap:var(--cfx-space-2)}
-  .gf-tools li{display:inline-flex;align-items:center;gap:var(--cfx-space-1-5);font-size:var(--t-14);font-weight:500;
-    padding:var(--cfx-space-1) var(--cfx-space-2-5);border-radius:999px;background:var(--cfx-accent);color:var(--cfx-accent-foreground)}
-  .gf-links{display:flex;flex-wrap:wrap;gap:var(--cfx-space-2) var(--cfx-space-5);margin-top:var(--cfx-space-4);font-size:var(--t-14);font-weight:500}
-  .gf-links a{color:var(--cfx-text)}
-  .gf-bottom{margin-top:var(--cfx-space-12);padding-top:var(--cfx-space-5);border-top:var(--cfx-stroke-hairline) solid var(--cfx-border);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--cfx-space-2) var(--cfx-space-6);font-size:var(--t-12);color:var(--cfx-text-soft)}
-
-  .gf-bottom a{color:inherit;text-decoration:none}
-  .gf-bottom a:hover{color:var(--cfx-text)}
-
-  /* ── smaller screens ── */
-  @media (max-width:1279px){
-    .hero h1{font-size:var(--t-64)}
-  }
-  @media (max-width:1023px){
-    .margin,.content,.hero-copy,.map,.why-head > div{grid-column:1 / -1}
-    .hero-grid{padding-top:var(--cfx-space-16);padding-bottom:var(--cfx-space-16)}
-    .hero h1{font-size:var(--t-64)}
-    .principle{grid-column:1 / -1}
-    .gf-grid{grid-template-columns:1fr 1fr}
-    .gf-grid > :first-child{grid-column:1 / -1}
-    .attach .g12{row-gap:var(--cfx-space-8)}
-  }
-  @media (max-width:639px){
-    .wrap{padding:0 var(--cfx-space-5)}
-    .nav a.lbl{display:none}
-    .hero-grid{padding-top:var(--cfx-space-12);padding-bottom:var(--cfx-space-12)}
-    .hero h1{font-size:var(--t-48);letter-spacing:-0.04em}
-    .lede,.m-sub{font-size:var(--t-16)}
-    .cta .btn{flex:1 1 auto;justify-content:center}
-    .map{padding:var(--cfx-space-4)}
-    .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .m-line,.index h2,.why h2{font-size:var(--t-32)}
-    .motto .wrap,.index,.why{padding-top:var(--cfx-space-16);padding-bottom:var(--cfx-space-16)}
-    .index-head{margin-bottom:var(--cfx-space-12)}
-    .row h3{font-size:var(--t-24)}
-    .bed{grid-template-columns:var(--cfx-space-11) minmax(0,1fr);row-gap:var(--cfx-space-2);column-gap:var(--cfx-space-4)}
-    .bed .desc,.bed .st{grid-column:2}
-    .bed .st{justify-self:start;padding-top:0}
-    .attach-fig{grid-template-columns:1fr;row-gap:var(--cfx-space-3)}
-    .hosts li{height:auto;padding:var(--cfx-space-1) 0;font-size:var(--t-16)}
-    .fan{display:none}
-    .down{display:block;font-size:var(--t-24);line-height:1;color:var(--cfx-text-soft);padding-left:var(--cfx-space-1)}
-    .dest .d-name{font-size:var(--t-24)}
-    .principle .num{font-size:var(--t-48)}
-    .gf-grid{grid-template-columns:1fr;gap:var(--cfx-space-8)}
-  }
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *{transition:none !important}
-  }
-
-  body{letter-spacing:0}
-
-
-
-
-  /* the hero's field: typed characters in waves, drawn by the script at the end. On load it drifts upward
-     into place and stops. It fades out at the top edge and toward the bottom. */
-  .hero{position:relative;isolation:isolate}
-  .hero-field{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.2s var(--m-ease);
-    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 50%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 50%,transparent 100%)}
-  .hero-field.on{opacity:1}
-
-  /* motion: sections rise into place as they scroll in; the marks arrive one by one on the account */
-  .js .rise{opacity:0;transform:translateY(16px);transition:opacity .6s var(--m-ease),transform .6s var(--m-ease)}
-  .js .rise.in{opacity:1;transform:none}
-  .js .map .mk{animation:mk-in .45s var(--m-ease) both;animation-delay:calc(.3s + var(--i) * 70ms)}
-  :root{--m-ease:cubic-bezier(0.22,1,0.36,1)}
-  @keyframes mk-in{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    .js .rise{opacity:1;transform:none;transition:none}
-    .js .map .mk{animation:none}
-  }
-
-
-  /* the attach diagram draws itself: the lines run from the three products to the one deployment, which then lands */
-  .js .attach-fig .fan{clip-path:inset(0 100% 0 0);transition:clip-path .8s var(--m-ease) .25s}
-  .js .attach-fig.in .fan{clip-path:inset(0 0 0 0)}
-  .js .attach-fig .dest{opacity:0;transform:translateX(-8px);transition:opacity .5s var(--m-ease) .85s,transform .5s var(--m-ease) .85s}
-  .js .attach-fig.in .dest{opacity:1;transform:none}
-  a.d-name{color:inherit;text-decoration:none}
-  a.d-name:hover{text-decoration:underline;text-underline-offset:0.18em}
-  @media (prefers-reduced-motion:reduce){
-    .js .attach-fig .fan{clip-path:none;transition:none}
-    .js .attach-fig .dest{opacity:1;transform:none;transition:none}
-  }
-</style>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body id="top">
 
@@ -336,7 +35,6 @@
 </header>
 
 <main>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="m-cfx-kit" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/><rect x="14" y="2" width="8" height="8" rx="1"/></g></symbol><symbol id="m-cfx-analytics" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g></symbol><symbol id="m-cfx-status" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g></symbol><symbol id="m-cfx-errors" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-9"/><path d="M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"/><path d="M14.12 3.88 16 2"/><path d="M21 21a4 4 0 0 0-3.81-4"/><path d="M21 5a4 4 0 0 1-3.55 3.97"/><path d="M22 13h-4"/><path d="M3 21a4 4 0 0 1 3.81-4"/><path d="M3 5a4 4 0 0 0 3.55 3.97"/><path d="M6 13H2"/><path d="m8 2 1.88 1.88"/><path d="M9 7.13V6a3 3 0 1 1 6 0v1.13"/></g></symbol><symbol id="m-cfx-launch" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></g></symbol><symbol id="m-cfx-mail" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></g></symbol><symbol id="m-cfx-backup" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69"/><path d="M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88"/><path d="M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></g></symbol><symbol id="m-cfx-revenue" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></g></symbol><symbol id="m-cfx-ledger" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></g></symbol><symbol id="m-cfx-admin" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" style="fill:var(--mk-fill,#086A72)"/><g transform="translate(7 7) scale(.75)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m14.305 16.53.923-.382"/><path d="m15.228 13.852-.923-.383"/><path d="m16.852 12.228-.383-.923"/><path d="m16.852 17.772-.383.924"/><path d="m19.148 12.228.383-.923"/><path d="m19.53 18.696-.382-.924"/><path d="m20.772 13.852.924-.383"/><path d="m20.772 16.148.924.383"/><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/></g></symbol></svg>
   <section class="hero" aria-labelledby="hero-title">
     <canvas class="hero-field" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -355,25 +53,25 @@
             <div class="acct-line"><span class="label acct" id="map-title">Your Cloudflare account</span><span class="label">one deployment per tool</span></div></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">A</span><span class="label">watch</span></span>
             <ul class="tiles">
-              <li><a class="tile" href="https://github.com/c-f-x/cfx-analytics"><svg class="mk" style="--i:0" aria-hidden="true"><use href="#m-cfx-analytics"/></svg><span class="t-name">cfx-analytics</span></a></li>
-              <li class="tile"><svg class="mk soon" style="--i:1" aria-hidden="true"><use href="#m-cfx-errors"/></svg><span class="t-name">cfx-errors</span></li>
-              <li class="tile"><svg class="mk soon" style="--i:2" aria-hidden="true"><use href="#m-cfx-status"/></svg><span class="t-name">cfx-status</span></li>
+              <li><a class="tile" href="/cfx-analytics/"><svg class="mk" style="--i:0" aria-hidden="true"><use href="/marks.svg#m-cfx-analytics"/></svg><span class="t-name">cfx-analytics</span></a></li>
+              <li class="tile"><svg class="mk soon" style="--i:1" aria-hidden="true"><use href="/marks.svg#m-cfx-errors"/></svg><span class="t-name">cfx-errors</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:2" aria-hidden="true"><use href="/marks.svg#m-cfx-status"/></svg><span class="t-name">cfx-status</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">B</span><span class="label">reach</span></span>
             <ul class="tiles">
-              <li><a class="tile" href="https://github.com/c-f-x/cfx-mail"><svg class="mk" style="--i:3" aria-hidden="true"><use href="#m-cfx-mail"/></svg><span class="t-name">cfx-mail</span></a></li>
-              <li class="tile"><svg class="mk soon" style="--i:4" aria-hidden="true"><use href="#m-cfx-launch"/></svg><span class="t-name">cfx-launch</span></li>
+              <li><a class="tile" href="https://github.com/c-f-x/cfx-mail"><svg class="mk" style="--i:3" aria-hidden="true"><use href="/marks.svg#m-cfx-mail"/></svg><span class="t-name">cfx-mail</span></a></li>
+              <li class="tile"><svg class="mk soon" style="--i:4" aria-hidden="true"><use href="/marks.svg#m-cfx-launch"/></svg><span class="t-name">cfx-launch</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">C</span><span class="label">keep</span></span>
             <ul class="tiles">
-              <li class="tile"><svg class="mk soon" style="--i:5" aria-hidden="true"><use href="#m-cfx-backup"/></svg><span class="t-name">cfx-backup</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:5" aria-hidden="true"><use href="/marks.svg#m-cfx-backup"/></svg><span class="t-name">cfx-backup</span></li>
             </ul></div>
           <div class="map-row"><span class="node"><span aria-hidden="true">D</span><span class="label">run</span></span>
             <ul class="tiles">
-              <li class="tile"><svg class="mk soon" style="--i:6" aria-hidden="true"><use href="#m-cfx-admin"/></svg><span class="t-name">cfx-admin</span></li>
+              <li class="tile"><svg class="mk soon" style="--i:6" aria-hidden="true"><use href="/marks.svg#m-cfx-admin"/></svg><span class="t-name">cfx-admin</span></li>
             </ul></div>
           <div class="map-row"><span class="node kit"><span class="label">kit</span></span>
-            <ul class="tiles"><li class="span"><a class="tile wide" href="https://github.com/c-f-x/cfx-kit"><svg class="mk" style="--i:7" aria-hidden="true"><use href="#m-cfx-kit"/></svg><span class="t-name">cfx-kit</span><span class="t-role">every tool stands on it</span></a></li></ul></div>
+            <ul class="tiles"><li class="span"><a class="tile wide" href="https://github.com/c-f-x/cfx-kit"><svg class="mk" style="--i:7" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><span class="t-name">cfx-kit</span><span class="t-role">every tool stands on it</span></a></li></ul></div>
         </figure>
       </div>
     </div>
@@ -403,19 +101,19 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-analytics">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-analytics"/></svg></span>
-            <span><a class="bed-name" href="https://github.com/c-f-x/cfx-analytics">cfx-analytics<span class="ext" aria-hidden="true"> ↗</span></a><span class="role label">product analytics</span></span>
+            <span class="plate" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-analytics"/></svg></span>
+            <span><a class="bed-name" href="/cfx-analytics/">cfx-analytics<span class="ext" aria-hidden="true"> ↗</span></a><span class="role label">product analytics</span></span>
             <span class="desc">Counts pages and events, records sessions and draws heatmaps, from PostHog&#8217;s own SDKs. Each product&#8217;s data is kept apart, in the region you choose.</span>
             <span class="st label"><span class="sdot"></span>live</span>
           </li>
           <li class="bed" id="cfx-errors">
-            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-errors"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-errors"/></svg></span>
             <span><span class="bed-name">cfx-errors</span><span class="role label">error tracking</span></span>
             <span class="desc">Collects the errors your apps throw, and groups the ones that share a cause.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
           </li>
           <li class="bed" id="cfx-status">
-            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-status"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-status"/></svg></span>
             <span><span class="bed-name">cfx-status</span><span class="role label">uptime and status pages</span></span>
             <span class="desc">Checks that your sites answer and that your scheduled jobs still check in. A public status page shows the result.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
@@ -429,13 +127,13 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-mail">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-mail"/></svg></span>
+            <span class="plate" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-mail"/></svg></span>
             <span><a class="bed-name" href="https://github.com/c-f-x/cfx-mail">cfx-mail<span class="ext" aria-hidden="true"> ↗</span></a><span class="role label">mail for your domains</span></span>
             <span class="desc">Mailboxes and sending for your own domains. Your apps send their sign-in links and alerts through it.</span>
             <span class="st label"><span class="sdot"></span>live</span>
           </li>
           <li class="bed" id="cfx-launch">
-            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-launch"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-launch"/></svg></span>
             <span><span class="bed-name">cfx-launch</span><span class="role label">launch pages and signups</span></span>
             <span class="desc">Launch pages, waitlists and tracked links for a new product. It counts who visits and who signs up, from each link you share.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
@@ -449,7 +147,7 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-backup">
-            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-backup"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-backup"/></svg></span>
             <span><span class="bed-name">cfx-backup</span><span class="role label">backups</span></span>
             <span class="desc">Copies your data off Cloudflare on a schedule. Each copy is restored in a test, so you know it works.</span>
             <span class="st label"><span class="sdot later"></span>later</span>
@@ -463,7 +161,7 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-admin">
-            <span class="plate soon" aria-hidden="true"><svg><use href="#m-cfx-admin"/></svg></span>
+            <span class="plate soon" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-admin"/></svg></span>
             <span><span class="bed-name">cfx-admin</span><span class="role label">admin panels</span></span>
             <span class="desc">A panel to read and fix the data in any of your products, for you and for your agents.</span>
             <span class="st label"><span class="sdot next"></span>next</span>
@@ -477,7 +175,7 @@
         </div>
         <ul class="beds content">
           <li class="bed" id="cfx-kit">
-            <span class="plate" aria-hidden="true"><svg><use href="#m-cfx-kit"/></svg></span>
+            <span class="plate" aria-hidden="true"><svg><use href="/marks.svg#m-cfx-kit"/></svg></span>
             <span><a class="bed-name" href="https://github.com/c-f-x/cfx-kit">cfx-kit<span class="ext" aria-hidden="true"> ↗</span></a><span class="role label">the shared kit</span></span>
             <span class="desc">The parts every tool shares, such as health checks and rule checks. Its deploy runner shows the plan, and how to undo each step, before it acts.</span>
             <span class="st label"><span class="sdot built"></span>built</span>
@@ -506,7 +204,7 @@
         </svg>
         <span class="down" aria-hidden="true">↓</span>
         <div class="dest">
-          <a class="d-name" href="https://github.com/c-f-x/cfx-analytics">cfx-analytics</a>
+          <a class="d-name" href="/cfx-analytics/">cfx-analytics</a>
           <span class="label">one deployment · your account</span>
         </div>
       </div>
@@ -552,7 +250,7 @@
       <div>
         <h2>The tools</h2>
         <ul class="gf-tools">
-          <li><span class="sdot"></span><a href="https://github.com/c-f-x/cfx-analytics">cfx-analytics</a></li>
+          <li><span class="sdot"></span><a href="/cfx-analytics/">cfx-analytics</a></li>
           <li><span class="sdot"></span><a href="https://github.com/c-f-x/cfx-mail">cfx-mail</a></li>
           <li><span class="sdot built"></span><a href="https://github.com/c-f-x/cfx-kit">cfx-kit</a></li>
           <li><span class="sdot next"></span>cfx-errors</li>
@@ -570,121 +268,13 @@
     </div>
     <div class="gf-bottom">
       <span>© 2026 c-f-x · self-hosted tools on Cloudflare</span>
-      <span>Visits counted without cookies, in the EU, by <a href="https://github.com/c-f-x/cfx-analytics">cfx-analytics</a></span>
+      <span>Visits counted without cookies, in the EU, by <a href="/cfx-analytics/">cfx-analytics</a></span>
       <span>Deploy once. Attach every product.</span>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var root=document.documentElement;
-  var t=document.getElementById('theme');
-  function label(){t.setAttribute('aria-label',root.getAttribute('data-theme')==='dark'?'Switch to light theme':'Switch to dark theme');}
-  label();
-  t.addEventListener('click',function(){
-    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    try{localStorage.setItem('cfx-theme',next)}catch(e){}
-    label();
-  });
-})();
-</script>
-<script>
-(function(){
-  var items=document.querySelectorAll('.rise');
-  function show(el){el.classList.add('in');}
-  if(!('IntersectionObserver' in window)){Array.prototype.forEach.call(items,show);return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){show(e.target);io.unobserve(e.target);}
-  });},{rootMargin:'0px 0px -6% 0px'});
-  Array.prototype.forEach.call(items,function(el){io.observe(el);});
-})();
-</script>
-<script>
-// The hero's field. Each cell of a monospace grid takes a character by how strong the wave is there:
-// light glyphs at the edges of a wave, heavy ones at its crest, and the brand teal at the strongest crests.
-// On load the field drifts upward into place and stops. Reduced motion gets the final frame straight away.
-(function(){
-  var c=document.querySelector('.hero-field'); if(!c||!c.getContext) return;
-  var ctx=c.getContext('2d'), root=document.documentElement;
-  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var RAMP=' .·:;=+*o0%#', HEAVY=8, FS=12, LH=15, FPS=24;
-  var W,H,CW,cols,rows,ink,accent,last=0;
-  function colours(){var cs=getComputedStyle(root);ink=cs.getPropertyValue('--cfx-text').trim()||'#121212';accent=cs.getPropertyValue('--cfx-primary').trim()||'#086A72';}
-  function font(w){ctx.font=w+' '+FS+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';}
-  function size(){
-    var r=c.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);
-    W=r.width;H=r.height;c.width=Math.round(W*d);c.height=Math.round(H*d);
-    ctx.setTransform(d,0,0,d,0,0);ctx.textBaseline='top';font(400);
-    CW=Math.ceil(ctx.measureText('M').width)+2;cols=Math.ceil(W/CW);rows=Math.ceil(H/LH);
-  }
-  function sm(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x);}
-  // where the field may show: on a wide screen it thins out toward the headline on the left;
-  // on a narrow one the text runs full width, so the field keeps to the strip above the headline
-  function keep(x,y){return W<720?1-sm(56,104,y*LH):.12+.88*sm(.3,.72,x/cols);}
-  // value noise: a smooth random height at every point, layered at three scales (fbm)
-  function h(i,j){var n=Math.sin(i*127.1+j*311.7)*43758.5453;return n-Math.floor(n);}
-  function noise(x,y){var i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j,ux=fx*fx*(3-2*fx),uy=fy*fy*(3-2*fy);
-    var a=h(i,j),b=h(i+1,j),c2=h(i,j+1),d=h(i+1,j+1);return a+(b-a)*ux+(c2-a)*uy+(a-b-c2+d)*ux*uy;}
-  function fbm(x,y){return .55*noise(x,y)+.3*noise(x*2.03+5.2,y*2.03+1.3)+.15*noise(x*4.1+9.7,y*4.1+3.1);}
-  function draw(p){
-    var e=1-Math.pow(1-p,3),t=9+3*e;   // eased: fast at first, settling to a stop
-    ctx.clearRect(0,0,W,H);
-    var heavy=[],x,y,X,Y,q,n,k,i,band;
-    for(y=0;y<rows;y++){
-      Y=y*LH/260+t*.07;               // the field drifts upward
-      for(x=0;x<cols;x++){
-        X=x*CW/260;
-        q=fbm(X*.8+t*.02,Y*.8);       // warp the field by itself, so the masses curl like waves
-        n=fbm(X+q*1.8,Y+q*1.8-t*.03);
-        band=.5+.5*Math.sin((X*.6+Y*1.1+q*3)*2.2);   // long wave bands running through the masses
-        k=sm(.42,.78,n)*(.55+.45*band)*keep(x,y)*(.25+.75*e);
-        if(k<.06) continue;
-        i=Math.max(1,Math.min(RAMP.length-1,Math.floor(k*(RAMP.length-1)+h(x,y)*1.6)));   // a little jitter, so rows don't read as stripes
-        if(i>=HEAVY){heavy.push(x,y,i,k);continue;}
-        ctx.globalAlpha=.1+.4*k;ctx.fillStyle=ink;ctx.fillText(RAMP[i],x*CW,y*LH);
-      }
-    }
-    font(700);
-    for(k=0;k<heavy.length;k+=4){
-      ctx.globalAlpha=.14+.46*heavy[k+3];ctx.fillStyle=heavy[k+3]>.8?accent:ink;
-      ctx.fillText(RAMP[heavy[k+2]],heavy[k]*CW,heavy[k+1]*LH);
-    }
-    font(400);ctx.globalAlpha=1;
-  }
-  var RISE=2600,start=0;
-  function loop(now){
-    if(!start) start=now;
-    var p=Math.min(1,(now-start)/RISE);
-    if(now-last>=1000/FPS||p===1){last=now;draw(p);}
-    if(p<1) requestAnimationFrame(loop);
-  }
-  colours();size();
-  draw(still?1:0);c.classList.add('on');
-  new MutationObserver(function(){colours();draw(1);}).observe(root,{attributes:true,attributeFilter:['data-theme']});
-  window.addEventListener('resize',function(){size();draw(1);});
-  if(!still) requestAnimationFrame(loop);
-})();
-</script>
-<script>
-/* one cookieless page view for c-f-x.com, counted in the EU.
-   no cookies, no storage, no library; nothing is sent under Do Not Track or Global Privacy Control. */
-(function(){
-  if (location.host !== 'c-f-x.com' && location.host !== 'www.c-f-x.com') return;
-  if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
-  var t = 'cfa_pk_9nBx2CZetLDUP3xHQWdfizPFW_czYrPtkpUwiiufLis', r = document.referrer, d = '$direct';
-  try { if (r) d = new URL(r).host; } catch (e) {}
-  var now = new Date().toISOString();
-  var p = { token: t, distinct_id: '$posthog_cookieless', $cookieless_mode: true, $lib: 'web',
-    $current_url: location.href, $host: location.host, $pathname: location.pathname, title: document.title,
-    $referrer: r || '$direct', $referring_domain: d, $raw_user_agent: navigator.userAgent.slice(0, 1000),
-    $timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, $browser_language: navigator.language,
-    $screen_width: screen.width, $screen_height: screen.height, $viewport_width: innerWidth, $viewport_height: innerHeight };
-  fetch('https://e.c-f-x.com/i/v0/e/', { method: 'POST', keepalive: true,
-    body: JSON.stringify({ api_key: t, batch: [{ event: '$pageview', properties: p, timestamp: now }], sent_at: now }) })
-    .catch(function(){});
-})();
-</script>
+<script src="/field.js"></script>
+<script src="/site.js"></script>
 </body>
 </html>

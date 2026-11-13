@@ -6,10 +6,12 @@ The landing page of c-f-x, a family of self-hosted tools on Cloudflare. One stat
 
 | Path | Holds |
 |---|---|
-| `public/index.html` | The page: markup, styles and its two small scripts in one file |
+| `public/index.html` | The home page; `public/field.js` is its background |
 | `public/fonts/` | Stack Sans Notch (titles) and Krub (body), with their SIL OFL licences |
 | `scripts/check.mjs` | `npm run check`, what CI runs |
 | `docs/deploy.md` | How the page deploys, and how to undo a deploy |
+| `docs/product-pages.md` | The layout every tool's page at `/<tool>/` follows, with `public/cfx-analytics/` as the example |
+| `public/site.css`, `public/site.js`, `public/marks.svg` | The styles, scripts and tool marks every page shares |
 
 ## Rules
 
