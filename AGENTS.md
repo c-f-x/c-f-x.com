@@ -1,22 +1,26 @@
 # c-f-x.com
 
-The landing page of c-f-x, a family of self-hosted tools on Cloudflare. One static page, `public/index.html`, served by Cloudflare Workers Static Assets (`wrangler.jsonc`). No build step. The licence is MIT.
+The site of c-f-x, a family of self-hosted tools on Cloudflare: the home page, `public/index.html`, and a product page for each released tool at `/<tool>/`, all static, served by Cloudflare Workers Static Assets (`wrangler.jsonc`). No build step. The licence is MIT.
 
 ## Start here
 
 | Path | Holds |
 |---|---|
-| `public/index.html` | The page: markup, styles and its two small scripts in one file |
+| `public/index.html` | The home page; `public/field.js` is its background |
 | `public/fonts/` | Stack Sans Notch (titles) and Krub (body), with their SIL OFL licences |
 | `scripts/check.mjs` | `npm run check`, what CI runs |
 | `docs/deploy.md` | How the page deploys, and how to undo a deploy |
+| `docs/product-pages.md` | How to make a tool's page at `/<tool>/`, start to deploy. Read it before touching a product page |
+| `templates/product-page.html` | The page to copy, with a `{{...}}` for every value and a note on where it comes from |
+| `public/cfx-analytics/`, `public/cfx-mail/` | The two product pages the owner approved, as finished examples |
+| `public/site.css`, `public/site.js`, `public/marks.svg` | The styles, scripts and tool marks every page shares |
 
 ## Rules
 
 - The trunk is `master`. Work on a branch and open a pull request. The lead merges.
 - The page loads nothing from another site: fonts, scripts and styles are served from `public/`. `npm run check` holds it.
 - Analytics: one cookieless page view per load, sent from the live site only to `e.c-f-x.com`, the page's own intake host on the family's analytics deployment (project `c-f-x.com`). Nothing is sent under Do Not Track or Global Privacy Control, and the footer says so.
-- The look comes from the c-f-x brand: neutrals plus the Primary teal `#086A72`, which marks the one primary action. Every colour is a token in the page's `:root`.
+- The look comes from the c-f-x brand: neutrals plus the Primary teal `#086A72`, which marks the one primary action. Every colour is a token in `public/site.css`'s `:root`.
 - Every tool name links to one place, the same everywhere on the page: the tool's own site once it has one, its public repository until then. A tool whose code is not public yet is plain text.
 - Motion is short. Each piece also works without scripts, and `prefers-reduced-motion` turns it off.
 - Public text names no vendor known only from research.

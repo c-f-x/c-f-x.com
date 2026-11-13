@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{tool}} · {{role, a few words}} on your Cloudflare account</title>
+<link rel="canonical" href="https://c-f-x.com/{{tool}}/">
+<link rel="preload" href="/fonts/stack-sans-notch.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/krub-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:,">
+<meta name="description" content="{{the bold line from the README, then one more sentence}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://c-f-x.com/{{tool}}/">
+<meta property="og:title" content="{{the same as the title}}">
+<meta property="og:description" content="{{the same as the description}}">
+<script>(function(){var r=document.documentElement;r.classList.add('js');var s=null;try{s=localStorage.getItem('cfx-theme')}catch(e){}if(s)r.setAttribute('data-theme',s);else if(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)r.setAttribute('data-theme','dark');else r.setAttribute('data-theme','light');})();</script>
+<link rel="stylesheet" href="/site.css">
+</head>
+<!--
+  The template for a tool's product page at c-f-x.com/{{tool}}/.
+  Read docs/product-pages.md first: it says where every fact comes from and how to check the page.
+  Copy this file to public/{{tool}}/index.html, replace every {{...}}, and delete every comment like this one.
+  public/cfx-analytics/index.html and public/cfx-mail/index.html are finished examples.
+-->
+<body id="top">
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+    <nav class="nav" aria-label="Site">
+      <a class="lbl" href="#why">Why</a>
+      <a class="lbl" href="#how">How</a>
+      <a class="lbl" href="#install">Install</a>
+      <a href="https://github.com/c-f-x/{{tool}}">Source <span aria-hidden="true">↗</span></a>
+      <button class="theme" id="theme" type="button" aria-label="Switch to dark theme">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 13.2A9 9 0 1 1 10.8 3 7 7 0 0 0 21 13.2z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="waysign" aria-label="Where this tool sits">
+  <div class="wrap">
+    <a href="/#tools">← c-f-x · the tools</a>
+    <!-- The row letter and name, and the tool's number, as on the home page's tool list. -->
+    <span><span aria-hidden="true">{{row letter}} {{row name}} / {{number}}</span> <span class="here">{{tool}}</span></span>
+    <!-- The next tool on the home page. Link it only if it has a page; say "next" if it is not released. -->
+    <span>{{next number}} {{next tool}} · {{its role}}</span>
+  </div>
+</nav>
+
+<main>
+  <section class="pp-hero" aria-labelledby="hero-title">
+    <div class="wrap g12">
+      <div class="pp-copy rise">
+        <svg class="mk-lg" aria-hidden="true"><use href="/marks.svg#m-{{tool}}"/></svg>
+        <!-- A short promise, at most six words, ending with a full stop. -->
+        <h1 id="hero-title">{{promise}}.</h1>
+        <p class="pp-tag">{{role, as on the home page}}</p>
+        <!-- Two or three sentences: what it does, for whom, and what it runs on. Wrap the tool's name in <span class="nowrap"> so it never breaks at its hyphen. -->
+        <p class="lede">{{intro}}</p>
+        <div class="cta">
+          <a class="btn primary" href="#install">Install <span aria-hidden="true">↓</span></a>
+          <a class="btn outline" href="https://github.com/c-f-x/{{tool}}">View source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="pp-shot rise">
+        <!-- The tool's main screen, 1440 wide, with made-up data, saved as public/{{tool}}/{{screen}}.png. Give its real width and height. -->
+        <img src="/{{tool}}/{{screen}}.png" width="1440" height="{{height}}" alt="{{what the screen shows, and that the data is made up}}">
+        <figcaption class="label">{{what it shows, in a few words}}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <!-- The commit of the repository's master when the page is written, and its date. -->
+      <h2 class="label" id="proof-title">{{tool}}, as it runs · commit {{short sha}} · {{d mon yyyy}}</h2>
+      <!-- Four whole numbers that are true of that commit, each one a reader can check in the repository. -->
+      <dl>
+        <div><dt>{{what the number counts}}</dt><dd>{{n}}</dd></div>
+        <div><dt>{{what the number counts}}</dt><dd>{{n}}</dd></div>
+        <div><dt>{{what the number counts}}</dt><dd>{{n}}</dd></div>
+        <div><dt>{{what the number counts}}</dt><dd>{{n}}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" id="why" aria-labelledby="why-title">
+    <div class="margin"><p class="label">why</p></div>
+    <div class="content rise">
+      <h2 id="why-title">{{the problem it solves, as a headline}}.</h2>
+      <p class="body">{{one paragraph: how this is usually done, what that costs, and what the tool does instead}}</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="answers-title">
+    <!-- "what it answers" for a tool you ask questions of; "what it does" for any other. -->
+    <div class="margin"><p class="label" id="answers-title">{{what it answers or what it does}}</p></div>
+    <!-- Six to eight short items, in a person's words. Number --i from 0, so they arrive one after another. -->
+    <ul class="content answers rise stagger">
+      <li style="--i:0">{{item}}</li>
+      <li style="--i:1">{{item}}</li>
+      <li style="--i:2">{{item}}</li>
+      <li style="--i:3">{{item}}</li>
+      <li style="--i:4">{{item}}</li>
+      <li style="--i:5">{{item}}</li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="how" aria-labelledby="how-title">
+    <div class="margin"><p class="label">how</p></div>
+    <div class="content">
+      <h2 id="how-title" class="rise">{{how it works, as a headline}}</h2>
+      <!-- Three to five steps, in the order a person meets them. Add a <pre class="code"> where the shortest real code helps. -->
+      <ol class="faces">
+        <li class="rise"><span class="n" aria-hidden="true">1</span><div>
+          <h3>{{step}}</h3>
+          <p>{{one or two sentences}}</p></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">2</span><div>
+          <h3>{{step}}</h3>
+          <p>{{one or two sentences}}</p>
+          <pre class="code">{{the shortest real code, escaped: &lt; &gt; &amp;}}</pre></div></li>
+        <li class="rise"><span class="n" aria-hidden="true">3</span><div>
+          <h3>{{step}}</h3>
+          <p>{{one or two sentences}}</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="limits-title">
+    <div class="margin"><p class="label" id="limits-title">what it doesn&#8217;t do</p></div>
+    <!-- Each limit from the README's "What it does not do": a name in a few words, then one plain sentence. -->
+    <ul class="content limits rise stagger">
+      <li style="--i:0"><b>{{limit}}</b><span>{{one sentence}}</span></li>
+      <li style="--i:1"><b>{{limit}}</b><span>{{one sentence}}</span></li>
+      <li style="--i:2"><b>{{limit}}</b><span>{{one sentence}}</span></li>
+    </ul>
+  </section>
+
+  <section class="pp-sec wrap g12" id="install" aria-labelledby="install-title">
+    <div class="margin"><p class="label">install</p></div>
+    <div class="content rise">
+      <h2 id="install-title">Install</h2>
+      <p class="body">You need a Cloudflare account on the Workers Paid plan, which starts at $5 a month, {{and what else, from the README's Install}}. {{the steps in one or two sentences}}:</p>
+      <!-- Always start by getting the code. Then the README's own commands, unchanged. -->
+      <pre class="code">git clone https://github.com/c-f-x/{{tool}}
+cd {{tool}}
+{{the README's install commands}}</pre>
+      <p class="body">Every step is in <a href="https://github.com/c-f-x/{{tool}}/blob/master/AGENTS.md#install-and-set-up">AGENTS.md</a>.</p>
+    </div>
+  </section>
+
+  <section class="pp-sec wrap g12" aria-labelledby="sits-title">
+    <div class="margin"><p class="label" id="sits-title">where it sits</p></div>
+    <!-- Two or three neighbours, each tied to this tool by a spec or a README, never by guess.
+         A released neighbour links to its page; one not released has class="mk soon", a plain name, and "Next." -->
+    <ul class="content sits rise stagger">
+      <li style="--i:0"><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-cfx-kit"/></svg><a class="who" href="https://github.com/c-f-x/cfx-kit">cfx-kit</a><span class="what">the family&#8217;s shared rules and checks</span></li>
+      <li style="--i:1"><svg class="mk" aria-hidden="true"><use href="/marks.svg#m-{{neighbour}}"/></svg><a class="who" href="/{{neighbour}}/">{{neighbour}}</a><span class="what">{{how the two work together}}</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="gf inverse">
+  <div class="wrap">
+    <div class="gf-grid">
+      <div>
+        <a class="wordmark" href="/" aria-label="c-f-x home">c-f-x</a>
+        <p class="gf-soft">Self-hosted tools on Cloudflare, for a solo developer or a small team.</p>
+      </div>
+      <div>
+        <h2>The tools</h2>
+        <ul class="gf-tools">
+          <li><span class="sdot"></span><a href="/cfx-analytics/">cfx-analytics</a></li>
+          <li><span class="sdot"></span><a href="/cfx-mail/">cfx-mail</a></li>
+          <li><span class="sdot built"></span><a href="https://github.com/c-f-x/cfx-kit">cfx-kit</a></li>
+          <li><span class="sdot next"></span>cfx-errors</li>
+          <li><span class="sdot next"></span>cfx-status</li>
+          <li><span class="sdot next"></span>cfx-launch</li>
+          <li><span class="sdot next"></span>cfx-admin</li>
+          <li><span class="sdot later"></span>cfx-backup</li>
+        </ul>
+      </div>
+      <div>
+        <h2>The project</h2>
+        <p class="gf-soft">Open source, MIT licensed.</p>
+        <p class="gf-links"><a href="https://github.com/c-f-x">GitHub →</a><a href="https://buymeacoffee.com/jahala">Buy me a coffee →</a></p>
+      </div>
+    </div>
+    <div class="gf-bottom">
+      <span>© 2026 c-f-x · self-hosted tools on Cloudflare</span>
+      <span>Visits counted without cookies, in the EU, by <a href="/cfx-analytics/">cfx-analytics</a></span>
+      <span>Deploy once. Attach every product.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+</body>
+</html>
